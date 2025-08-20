@@ -12,7 +12,7 @@ public final class GeracaoModelo {
         this.p4 = p4;
     }
 
-    public void metodor(){
+    public void definirOcupacao(){
         tabuleiroModelo.getPosicoesLista().get(p1).setOcupado(true);
         tabuleiroModelo.getPosicoesLista().get(p2).setOcupado(true);
         tabuleiroModelo.getPosicoesLista().get(p3).setOcupado(true);
