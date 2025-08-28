@@ -1,5 +1,6 @@
 package org.javablockdrop.controller;
 
+import org.javablockdrop.model.Cor;
 import org.javablockdrop.model.TabuleiroModelo;
 
 import java.util.Objects;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 
 public class InputController {
     private TabuleiroModelo tabuleiroModelo;
+
     public InputController(){
         tabuleiroModelo=TabuleiroModelo.getInstancia();
     }
@@ -25,7 +27,7 @@ public class InputController {
         }
     }
     public void instrucionarUsuario(){
-        System.out.println("Para cada tipo de jogada digite o comando correspondente. " +
+        System.out.println(Cor.RESETADO.getDescricao()+ "Para cada tipo de jogada digite o comando correspondente. " +
                 "\nVocê pode fazer combinações, como: RH2D2, RA4 ou RA3E4. \n" +
                 "RHN -> rodar a peça para o sentido horario x N numero de vezes \n" +
                 "RAN -> rodar a peça para o sentido anti-horário  x N numero de vezes \n" +

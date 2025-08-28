@@ -10,7 +10,8 @@ import java.util.List;
 
 public final class TabuleiroModelo {
     private static TabuleiroModelo instancia;
-//atriputo posicoes composta por posicao modelo
+
+    //atriputo posicoes composta por posicao modelo
     private List<PosicaoModelo> posicoesLista;
 
     public TabuleiroModelo(){
@@ -41,8 +42,8 @@ public final class TabuleiroModelo {
         }
 
         //teste
-        posicoesLista.get(1).setOcupado(true);
-        System.out.println(posicoesLista.get(1).getComposicao());
+//        posicoesLista.get(1).setOcupado(true);
+//        System.out.println(posicoesLista.get(1).getComposicao());
 
         int r = (int )(Math.random() * 6 + 0);//0 a 6
         Peca p0= new Peca();
@@ -61,7 +62,7 @@ public final class TabuleiroModelo {
         for (int i = 0; i < posicoesLista.size(); i++) {
             System.out.print(posicoesLista.get(i).getComposicao() + " ");
             if ((i + 1) % 8 == 0) {
-                System.out.println();
+                System.out.println(Cor.RESETADO.getDescricao());
             }
         }
     }

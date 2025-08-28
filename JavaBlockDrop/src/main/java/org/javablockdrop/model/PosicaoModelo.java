@@ -1,14 +1,13 @@
 package org.javablockdrop.model;
 
-// preenchido : ▓▓
-// vazio:░░
 public class PosicaoModelo {
-    public String composicao= "░░";
+    public Cor cor=Cor.PADRAO;
+    public String composicao = cor.getDescricao()+"  ";
     public int linha;
     public int coluna;
     public boolean ocupado=false;
 
-    public PosicaoModelo( int linha , int coluna) {
+    public PosicaoModelo(int linha, int coluna) {
         this.linha = linha;
         this.coluna = coluna;
     }
@@ -17,11 +16,14 @@ public class PosicaoModelo {
     public void setComposicao(String composicao) {this.composicao = composicao;}
 
     public boolean isOcupado() {return ocupado;}
-    public void setOcupado(boolean ocupado) {
+    public void setOcupado(boolean ocupado, String corPeca) {
         this.ocupado = ocupado;
         if(ocupado)
         {
-            setComposicao("▓▓");
+            setComposicao(corPeca+"  ");
         }
     }
+
+    public Cor getCor() {return cor;}
+    public void setCor(Cor cor) {this.cor = cor;}
 }
