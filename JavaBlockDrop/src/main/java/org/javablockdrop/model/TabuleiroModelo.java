@@ -1,15 +1,11 @@
 package org.javablockdrop.model;
-// para jogar, digite:
-// pode rodar a peça para o sentido horario (RHN) e anti-horário (RAN) -> rodar no sentido x N numero de vezes
-// pode ir para direita (DN) esquerda (EN) -> direcao x N numero de vezes
-// pode pausar -> P
-// voltar -> V
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class TabuleiroModelo {
     private static TabuleiroModelo instancia;
+    private final int r = (int )(Math.random() * 6 + 0);
 
     //atriputo posicoes composta por posicao modelo
     private List<PosicaoModelo> posicoesLista;
@@ -45,7 +41,6 @@ public final class TabuleiroModelo {
 //        posicoesLista.get(1).setOcupado(true);
 //        System.out.println(posicoesLista.get(1).getComposicao());
 
-        int r = (int )(Math.random() * 6 + 0);//0 a 6
         Peca p0= new Peca();
         switch (r) {
             case 0 -> p0.criarO();
