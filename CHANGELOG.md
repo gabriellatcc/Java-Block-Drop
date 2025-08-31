@@ -4,6 +4,16 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
+## [0.3.1] - 2025-08-31
+
+### Changed
+- Mudança na lógica de leitura de dados com `if-else` para `swich case` para legibilidade e eficiência.
+- Substituição da regra de armazenamento de jogadas com a interface `Map` para uma lista simples que suporta objetos do tipo Jogada.
+
+### Removed
+- interface `Map` para armazenamento de movimentos e quantidade de vezes em uma jogada.
+
+---
 ## [0.3.0] - 2025-08-31
 
 ### Added
