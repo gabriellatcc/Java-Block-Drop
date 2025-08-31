@@ -4,6 +4,14 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
+## [0.3.0] - 2025-08-31
+
+### Added
+- Leitura de comandos do jogador 
+- Lógica para o dado que entra como String e é armazenada em um array para ser averiguado.
+<img width="204" height="224" alt="image" src="https://github.com/user-attachments/assets/176b53a8-70d7-412f-a0d3-6bf4cc5750b5" />
+
+---
 
 ## [0.2.0] - 2025-08-27
 
