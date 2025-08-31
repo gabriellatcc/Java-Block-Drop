@@ -1,67 +1,70 @@
 package org.javablockdrop.controller;
 
-import org.javablockdrop.model.Cor;
+import org.javablockdrop.model.Jogada;
 import org.javablockdrop.model.TabuleiroModelo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class InputController {
     private TabuleiroModelo tabuleiroModelo;
+    private Jogada jogada;
+    private List<Jogada> listaJogadas = new ArrayList<>();
+    public OutputController outputController= new OutputController();;
 
     public InputController(){
+        jogada=Jogada.getInstancia();
         tabuleiroModelo=TabuleiroModelo.getInstancia();
     }
 
     public void obterResposta(String resposta){
-        if(Objects.equals(resposta, "S") ||Objects.equals(resposta, "s")){
-            //executar tabuleiro
-            tabuleiroModelo.criarTabuleiro();
-            instrucionarUsuario();
-        } else if (Objects.equals(resposta, "N")){
-            System.out.println("Ok, não jogaremos Tetris.");
+        String respostaLower= resposta.toLowerCase();
+        switch (respostaLower){
+            case "s":
+                tabuleiroModelo.criarTabuleiro();
+                outputController.instrucionarUsuario();
+                break;
+            case"n":
+                outputController.despedirDoUsuario();
+                break;
         }
     }
 
-    public void instrucionarUsuario(){
-        System.out.println(Cor.RESETADO.getDescricao()+ "Para cada tipo de jogada digite o comando correspondente. " +
-                "\nVocê pode fazer combinações, como: H2D2, A4 ou A3E2. \n" +
-                "H + N -> rodar a peça para o sentido horario x N numero de vezes \n" +
-                "A + N -> rodar a peça para o sentido anti-horário  x N numero de vezes \n" +
-                "D + N -> deslizar a peça para direita x N numero de vezes \n" +
-                "E + N -> deslizar a peça para esquerda  x N numero de vezes \n" +
-                "P -> pausar e despausar");
-
-        Scanner e =  new Scanner(System.in);
-        String jogada = e.nextLine();
-        obterJogada(jogada);
-    }
-
     public void obterJogada(String jogada) {
-        if(jogada.length() > 6 || jogada.isEmpty()){
-            System.out.println("Resposta inválida! siga os comandos.");
+        if (jogada == null || jogada.isEmpty()) {
+            System.out.println("Resposta inválida! Siga os comandos.");
             return;
-        } else {
-            Map<Integer, Character> mapaPassos = new HashMap<Integer, Character>();
-            try{
-                int [] digito = new int [10];
-                char[] passoJogado = jogada.toCharArray();
-                for (int i=0;i<passoJogado.length;i++){
-                    if(!Character.isDigit(jogada.charAt(i))){
-                        passoJogado[i] = jogada.charAt(i);
-                        System.out.println("char: "+passoJogado[i]);
-                    } else{
-                        digito[i] = Character.getNumericValue(jogada.charAt(i));
-                        System.out.println("digito: "+digito[i]);
-                        mapaPassos.put(digito[i], passoJogado[i-1]);
-                        System.out.println(mapaPassos);
+        }
+
+        String jogadaLower = jogada.toLowerCase();
+
+        switch (jogadaLower) {
+            case "p":
+                outputController.pausar();
+                break;
+            case "v":
+                outputController.exibirTabuleiro();
+                outputController.repetir();
+                break;
+            case "s":
+                outputController.despedirDoUsuario();
+                break;
+            default:
+                if (jogada.length() == 2 && Character.isLetter(jogada.charAt(0)) && Character.isDigit(jogada.charAt(1))) {
+                    try {
+                        char letra = jogada.charAt(0);
+                        int numero = Character.getNumericValue(jogada.charAt(1));
+
+                        listaJogadas.add(new Jogada(letra, numero));
+
+                        outputController.exibirTabuleiro();
+                        outputController.repetir();
+                    } catch (Exception e) {
+                        System.out.println("Erro ao processar a jogada: " + e.getMessage());
                     }
+                } else {
+                    System.out.println("Jogada inválida! Use o formato LetraNúmero (ex: A4).");
                 }
-            } catch (Exception e) {
-                System.out.println("Erro: "+e.getMessage());
-            }
+                break;
         }
     }
 }

@@ -1,5 +1,7 @@
 package org.javablockdrop.model;
 
+import org.javablockdrop.controller.OutputController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,7 @@ public final class TabuleiroModelo {
     private static TabuleiroModelo instancia;
     private final int r = (int )(Math.random() * 6 + 0);
 
-    //atriputo posicoes composta por posicao modelo
-    private List<PosicaoModelo> posicoesLista;
+    private List<CoordenadaModelo> posicoesLista;
 
     public TabuleiroModelo(){
         posicoesLista = new ArrayList<>(64);
@@ -21,7 +22,7 @@ public final class TabuleiroModelo {
             }
             return instancia;
         } catch (Exception e) {
-            System.out.println("Erro ao retornar a instância:"+e.getMessage());
+            System.out.println("Erro ao retornar a instância: "+e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -33,13 +34,9 @@ public final class TabuleiroModelo {
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
                 String [][] posicao = new String[8][8];
-                posicoesLista.add(new PosicaoModelo(i,j));
+                posicoesLista.add(new CoordenadaModelo(i,j));
             }
         }
-
-        //teste
-//        posicoesLista.get(1).setOcupado(true);
-//        System.out.println(posicoesLista.get(1).getComposicao());
 
         Peca p0= new Peca();
         switch (r) {
@@ -50,23 +47,12 @@ public final class TabuleiroModelo {
             case 4-> p0.criarI();
             case 5 -> p0.criarS();
             case 6 -> p0.criarZ();
-            default -> System.out.println("oii dei errado");
         }
+        OutputController outputController= new OutputController();;
 
-        //isso é a impressao do tabuleiro, geracao de pecas vem antes disso
-        for (int i = 0; i < posicoesLista.size(); i++) {
-            System.out.print(posicoesLista.get(i).getComposicao() + " ");
-            if ((i + 1) % 8 == 0) {
-                System.out.println(Cor.RESETADO.getDescricao());
-            }
-        }
+        outputController.exibirTabuleiro();
     }
 
-    public void iniciarPartida(){
-        //randomizar o aparecimento de uma peca, arrray talvez? array de 8 indices para 7 peças
-        //a proxima peca não pode ser
-
-    }
-    public List<PosicaoModelo> getPosicoesLista() {return posicoesLista;}
-    public void setPosicoesLista(List<PosicaoModelo> posicoesLista) {this.posicoesLista = posicoesLista;}
+    public List<CoordenadaModelo> getPosicoesLista() {return posicoesLista;}
+    public void setPosicoesLista(List<CoordenadaModelo> posicoesLista) {this.posicoesLista = posicoesLista;}
 }

@@ -1,13 +1,13 @@
 package org.javablockdrop.model;
 
-public class PosicaoModelo {
+public class CoordenadaModelo {
     public Cor cor=Cor.PADRAO;
     public String composicao = cor.getDescricao()+"  ";
     public int linha;
     public int coluna;
     public boolean ocupado=false;
 
-    public PosicaoModelo(int linha, int coluna) {
+    public CoordenadaModelo(int linha, int coluna) {
         this.linha = linha;
         this.coluna = coluna;
     }
