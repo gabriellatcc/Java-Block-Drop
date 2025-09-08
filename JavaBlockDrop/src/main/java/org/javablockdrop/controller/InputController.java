@@ -1,26 +1,31 @@
 package org.javablockdrop.controller;
 
-import org.javablockdrop.model.Jogada;
-import org.javablockdrop.model.TabuleiroModelo;
+import org.javablockdrop.model.JogadaModelo;
+import org.javablockdrop.model.PartidaModelo;
 
-import java.util.*;
-
+/**
+ * Classe responsável pela entrada de dados digitados pelo usuário,
+ * ela filtra e utiliza {@code OutputController} se não segue os padrões ou para prosseguir e informar o usuário.
+ */
 public class InputController {
-    private TabuleiroModelo tabuleiroModelo;
-    private Jogada jogada;
-    private List<Jogada> listaJogadas = new ArrayList<>();
+    private PartidaModelo partidaModelo;
+
     public OutputController outputController= new OutputController();;
 
     public InputController(){
-        jogada=Jogada.getInstancia();
-        tabuleiroModelo=TabuleiroModelo.getInstancia();
+        partidaModelo=PartidaModelo.getInstancia();
     }
 
+    /**
+     * Obtém a resposta a primeira resposta do usuário para iniciar uma partida.
+     * @param resposta pode ser "s" para a partida começar e, caso seja "n", o jogo
+     * é encerrado e exibe uma mensagem de despedida e agradecimento para o usuário
+     */
     public void obterResposta(String resposta){
         String respostaLower= resposta.toLowerCase();
         switch (respostaLower){
             case "s":
-                tabuleiroModelo.criarTabuleiro();
+                partidaModelo.getTabuleiroModelo().criarTabuleiro();
                 outputController.instrucionarUsuario();
                 break;
             case"n":
@@ -29,10 +34,14 @@ public class InputController {
         }
     }
 
+    /**
+     * Obtém a jogada do jogador, filtra e dispara métodos para pausa, retorno e encerramento do jogo.
+     * Repassa para outra classe disparar os respectivos métodos para manipular o tabuleiro.
+     * @param jogada é a informação da jogada/instrução do jogador.
+     */
     public void obterJogada(String jogada) {
         if (jogada == null || jogada.isEmpty()) {
             System.out.println("Resposta inválida! Siga os comandos.");
-            return;
         }
 
         String jogadaLower = jogada.toLowerCase();
@@ -54,15 +63,20 @@ public class InputController {
                         char letra = jogada.charAt(0);
                         int numero = Character.getNumericValue(jogada.charAt(1));
 
-                        listaJogadas.add(new Jogada(letra, numero));
-
+                        partidaModelo.getListaJogadas().add(new JogadaModelo(letra, numero));
+                        for ( int i=0;i<partidaModelo.getListaJogadas().size();i++)
+                        {
+                            System.out.println(partidaModelo.getListaJogadas().get(i).getMovimento());
+                            System.out.println(partidaModelo.getListaJogadas().get(i).getQuantidade());
+                            partidaModelo.getListaJogadas().get(i).executar();
+                        }
                         outputController.exibirTabuleiro();
                         outputController.repetir();
                     } catch (Exception e) {
                         System.out.println("Erro ao processar a jogada: " + e.getMessage());
                     }
                 } else {
-                    System.out.println("Jogada inválida! Use o formato LetraNúmero (ex: A4).");
+                    System.out.println("JogadaModelo inválida! Use o formato LetraNúmero (ex: A4).");
                 }
                 break;
         }

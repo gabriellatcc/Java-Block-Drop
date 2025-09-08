@@ -1,17 +1,25 @@
 package org.javablockdrop.controller;
 
-import org.javablockdrop.model.Cor;
-import org.javablockdrop.model.TabuleiroModelo;
+import org.javablockdrop.model.PartidaModelo;
+import org.javablockdrop.model.enumeration.Cor;
 
 import java.util.Scanner;
 
+/**
+ * Nesta classe os principais métodos de explicação para o usuário são utilizados para
+ * manifestar o tabuleiro, agradecimento e projetar pausa do jogo.
+ */
 public class OutputController {
-    private TabuleiroModelo tabuleiroModelo;
+    private PartidaModelo partidaModelo;
 
     public OutputController() {
-        tabuleiroModelo=TabuleiroModelo.getInstancia();
+        partidaModelo=PartidaModelo.getInstancia();
     }
 
+    /**
+     * Imprime a mensagem inicial que apresenta o jogo e chama a classe InputController para receber
+     * a resposta de permissão para iniciar o jogo.
+     */
     public void saudar() {
         Scanner e = new Scanner(System.in);
         System.out.println(
@@ -30,6 +38,10 @@ public class OutputController {
         inputController.obterResposta(resposta);
     }
 
+    /**
+     * Informa o usuário os possíveis comandos a serem utilizados para manipular o tabuleiro,
+     * como o modo em que se gira ou move uma peça e a forma de pausar e retornar ao jogo.
+     */
     public void instrucionarUsuario(){
         Scanner e =  new Scanner(System.in);
 
@@ -47,15 +59,23 @@ public class OutputController {
         inputController.obterJogada(jogada);
     }
 
+    /**
+     * Exibe o tabuleiro por meio da impressão da lista de suas casas em loop e quebra de linha a cada 8 casas,
+     * formando um tabuleiro de 64 casas.
+     */
     public void exibirTabuleiro(){
-        for (int i = 0; i < tabuleiroModelo.getPosicoesLista().size(); i++) {
-            System.out.print(tabuleiroModelo.getPosicoesLista().get(i).getComposicao() + " ");
+        for (int i = 0; i < partidaModelo.getTabuleiroModelo().getListaCasas().size(); i++) {
+            System.out.print(partidaModelo.getTabuleiroModelo().getListaCasas().get(i).getComposicao() + " ");
             if ((i + 1) % 8 == 0) {
                 System.out.println(Cor.RESETADO.getDescricao());
             }
         }
     }
 
+    /**
+     * Repete para o usuário digitar mais jogadas para que o jogo continue e aguarda a jogada por meio
+     * da classe InputController.
+     */
     public void repetir(){
         Scanner e =  new Scanner(System.in);
 
@@ -66,6 +86,9 @@ public class OutputController {
         inputController.obterJogada(jogada);
     }
 
+    /**
+     * Exibe a mensagem de "O JOGO ESTÁ PAUSADO" personalizada que tem as mesmas proporcões que o tabuleiro ocupa.
+     */
     public void pausar(){
         Scanner e =  new Scanner(System.in);
         String vazio = "                        ";
@@ -95,6 +118,9 @@ public class OutputController {
         inputController.obterJogada(jogada);
     }
 
+    /**
+     * Exibe uma pergunta referente a uma nova tentativa caso o jogador tenha perdido a partida e travado o tabuleiro.
+     */
     public void oferecerTentar(){
         Scanner e =  new Scanner(System.in);
 
@@ -105,6 +131,9 @@ public class OutputController {
         inputController.obterResposta(jogada);
     }
 
+    /**
+     * Informa uma mensagem de agradecimento ao usuário quando o jogo encerra.
+     */
     public void despedirDoUsuario() {
         System.out.println(Cor.NEGRITO.getDescricao()+
                 "\nObrigada por visitar o jogo!" +

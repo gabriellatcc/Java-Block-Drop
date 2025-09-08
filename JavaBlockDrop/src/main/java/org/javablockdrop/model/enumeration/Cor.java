@@ -1,5 +1,9 @@
-package org.javablockdrop.model;
+package org.javablockdrop.model.enumeration;
 
+/**
+ * Classe que enumera todas as strings compostas por um ANSI Escape Sequences, que no terminal
+ * é impresso colorido e facilita a digitação.
+ */
 public enum Cor {
     //cores: unicode + color code
     RESETADO("\u001b[0m"),

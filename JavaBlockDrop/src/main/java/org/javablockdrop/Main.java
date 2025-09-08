@@ -1,10 +1,8 @@
 package org.javablockdrop;
 import org.javablockdrop.controller.OutputController;
-import org.javablockdrop.model.TabuleiroModelo;
 
 public class Main {
     public static void main(String[] args) {
-        TabuleiroModelo.getInstancia();
         String preto="\u001b[30m";
         String brancoc="\u001b[47m";
         System.out.println(preto+brancoc+"testecor");
