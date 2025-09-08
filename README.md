@@ -16,7 +16,8 @@ Possui as seguintes finalidades:
 - Geração do tabuleiro no terminal.
 - Criação de peças aleatórias no topo do tabuleiro.
 - Menu inicial para o jogador decidir começar.
-  Pendências:
+
+Pendências:
 - Implementar a movimentação da peça para esquerda e direita.
 - Lógica de rotação da peça (sentido horário e anti-horário).
 - Detecção de colisão e empilhamento de peças.
