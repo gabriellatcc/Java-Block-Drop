@@ -4,6 +4,22 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
+## [0.3.2] - 2025-09-08
+
+### Added
+- Lógica de Heranca para criação de peças.
+- Polimorfismo para realizar movimentos de peças diferentes.
+- Documentação das classes e métodos para melhor entendimento.
+
+### Changed
+- Organização lógica da criação de peças.
+- Posições do tabuleiro que são reconhecidas como casas que contém um valor para coordenada.
+
+### Removed
+- Classe geradora de peças.
+- Classe responsável pelas coordenadas do tabuleiro.
+
+---
 ## [0.3.1] - 2025-08-31
 
 ### Changed
