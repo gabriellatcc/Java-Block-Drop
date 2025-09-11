@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class OutputController {
     private PartidaModelo partidaModelo;
+    private InputController inputController;
 
     public OutputController() {
         partidaModelo=PartidaModelo.getInstancia();
@@ -34,8 +35,7 @@ public class OutputController {
                         "\n N -> para não jogar");
         String resposta = e.nextLine();
 
-        InputController inputController=new InputController();
-        inputController.obterResposta(resposta);
+        this.inputController.obterResposta(resposta);
     }
 
     /**
@@ -55,8 +55,7 @@ public class OutputController {
                 "S -> sair e encerrar");
         String jogada = e.nextLine();
 
-        InputController inputController=new InputController();
-        inputController.obterJogada(jogada);
+        this.inputController.obterJogada(jogada);
     }
 
     /**
@@ -82,8 +81,7 @@ public class OutputController {
         System.out.println("Continue digitando jogadas e as peças se deslocam 1 para baixo.");
         String jogada = e.nextLine();
 
-        InputController inputController=new InputController();
-        inputController.obterJogada(jogada);
+        this.inputController.obterJogada(jogada);
     }
 
     /**
@@ -114,8 +112,7 @@ public class OutputController {
                 Cor.NEGRITO.getDescricao()+"V -> para retomar");
         String jogada = e.nextLine();
 
-        InputController inputController=new InputController();
-        inputController.obterJogada(jogada);
+        this.inputController.obterJogada(jogada);
     }
 
     /**
@@ -127,8 +124,7 @@ public class OutputController {
         System.out.println("Que pena! Quer tentar de novamente?");
         String jogada = e.nextLine();
 
-        InputController inputController=new InputController();
-        inputController.obterResposta(jogada);
+        this.inputController.obterResposta(jogada);
     }
 
     /**
@@ -141,4 +137,7 @@ public class OutputController {
                 "\n"+Cor.AZUL.getDescricao()+"\u001b[30m"+"@gabriellatccorrea - LINKEDIN"+Cor.RESETADO.getDescricao());
     }
 
+    public void setInputController(InputController inputController) {
+        this.inputController = inputController;
+    }
 }

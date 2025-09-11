@@ -17,8 +17,13 @@ public class CasaModelo {
      * Métodos de encapsulamento getters e setters
      */
     public String getComposicao() {
-        return this.cor + "  ";
+        if (this.cor != null) {
+            return this.cor + "  ";
+        } else {
+            return Cor.PADRAO.getDescricao() + "  ";
+        }
     }
+
     public boolean isOcupado() {return ocupado;}
     public void setOcupado(boolean ocupado) {this.ocupado = ocupado;}
     public String getCor() {return cor;}

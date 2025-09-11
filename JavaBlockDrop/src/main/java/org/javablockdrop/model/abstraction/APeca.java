@@ -32,7 +32,14 @@ public abstract class APeca {
      * Cria a peça definindo a coordenada da casa do tabuleiro que a peça ocupa
      * como ocupada e estabelecendo a cor da peça.
      */
-    public void definirCasas(){
+    public boolean definirCasas(){
+        boolean colisao = Stream.of(c1, c2, c3, c4)
+                .anyMatch(index -> casas.get(index).isOcupado());
+
+        if (colisao) {
+            return false;
+        }
+
         casas.get(c1).setOcupado(true);
         casas.get(c1).setCor(this.cor.getDescricao());
 
@@ -44,6 +51,22 @@ public abstract class APeca {
 
         casas.get(c4).setOcupado(true);
         casas.get(c4).setCor(this.cor.getDescricao());
+
+        return true;
+    }
+
+    public void limparCasas() {
+        casas.get(c1).setOcupado(false);
+        casas.get(c1).setCor(null);
+
+        casas.get(c2).setOcupado(false);
+        casas.get(c2).setCor(null);
+
+        casas.get(c3).setOcupado(false);
+        casas.get(c3).setCor(null);
+
+        casas.get(c4).setOcupado(false);
+        casas.get(c4).setCor(null);
     }
 
     /**
@@ -52,6 +75,12 @@ public abstract class APeca {
      * @param qnt a quantidade de vezes que se moverá para direita.
      */
     public void movimentarD(int qnt) {
+        boolean naBorda = Stream.of(c1, c2, c3, c4).anyMatch(index -> (index + 1) % 8 == 0);
+        if (naBorda) {
+            return;
+        }
+        limparCasas();
+
         boolean nenhumaOcupada = Stream.of(c1 + qnt, c2 + qnt, c3 + qnt, c4 + qnt)
                 .map(index -> casas.get(index))
                 .noneMatch(CasaModelo::isOcupado);
@@ -61,9 +90,9 @@ public abstract class APeca {
             c2 += qnt;
             c3 += qnt;
             c4 += qnt;
-        } else{
-            System.out.printf("Ops, deu erro! A peca não pode movimentar para direita\n");
         }
+        definirCasas();
+
     }
 
     /**
@@ -72,6 +101,11 @@ public abstract class APeca {
      * @param qnt a quantidade de vezes que se movimentará para esquerda.
      */
     public void movimentarE(int qnt) {
+        boolean naBorda = Stream.of(c1, c2, c3, c4).anyMatch(index -> index % 8 == 0);
+        if (naBorda) {
+            return;
+        }
+        limparCasas();
         boolean nenhumaOcupada = Stream.of(c1 - qnt, c2 - qnt, c3 - qnt, c4 - qnt)
                 .map(index -> casas.get(index))
                 .noneMatch(CasaModelo::isOcupado);
@@ -81,11 +115,9 @@ public abstract class APeca {
             c2 -= qnt;
             c3 -= qnt;
             c4 -= qnt;
-        } else{
-            System.out.printf("Ops, deu erro! A peca não conseguiu descer\n");
-            estadoAI = false;
-            criarPecaAleatoria();
         }
+        definirCasas();
+
     }
 
     /**
@@ -94,6 +126,13 @@ public abstract class APeca {
      * e outra peça deve ser gerada.
      */
     public void descer() {
+        boolean noChao = Stream.of(c1, c2, c3, c4).anyMatch(index -> index >= 56);
+        if (noChao) {
+            this.estadoAI = false;
+            return;
+        }
+        limparCasas();
+
         boolean nenhumaOcupada = Stream.of(c1 + 8, c2 + 8, c3 + 8, c4 + 8)
                 .map(index -> casas.get(index))
                 .noneMatch(CasaModelo::isOcupado);
@@ -104,11 +143,11 @@ public abstract class APeca {
             c3 += 8;
             c4 += 8;
         } else{
-            System.out.println(c1+c2+c3+c4);
             System.out.printf("Ops, deu erro! A peca não conseguiu descer\n");
             estadoAI = false;
-            criarPecaAleatoria();
         }
+        definirCasas();
+
     }
 
     /**
@@ -148,7 +187,6 @@ public abstract class APeca {
                 novaPeca = new PecaO();
                 break;
         }
-        novaPeca.definirCasas();
         return novaPeca;
     }
 

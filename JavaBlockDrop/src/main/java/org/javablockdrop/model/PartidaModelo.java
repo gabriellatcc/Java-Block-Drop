@@ -12,13 +12,13 @@ import java.util.List;
  */
 public final class PartidaModelo {
     private static PartidaModelo instancia;
-    private OutputController outputController;
 
     private TabuleiroModelo tabuleiroModelo= new TabuleiroModelo();
 
     private List<JogadaModelo> listaJogadaModelos = new ArrayList<>();
     private int pontos=0;
     private boolean partidaIniciada = false;
+    private boolean jogoAtivo = true;
 
     public PartidaModelo() {}
 
@@ -37,6 +37,26 @@ public final class PartidaModelo {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Orquestra um turno completo do jogo.
+     * 1. Executa a jogada do usuário.
+     * 2. Desce a peça ativa.
+     * 3. Verifica se uma nova peça precisa ser criada.
+     * @param jogada a jogada criada pelo InputController.
+     */
+    public void processarTurno(JogadaModelo jogada) {
+        if (jogada != null) {
+            jogada.executar();
+        }
+
+        APeca pecaAtiva = tabuleiroModelo.getPecaAtiva();
+        if (pecaAtiva != null && pecaAtiva.isEstadoAI()) {
+            pecaAtiva.descer();
+        }
+
+        atualizarCicloDoJogo();
     }
 
     /**
@@ -62,16 +82,18 @@ public final class PartidaModelo {
 
     public void atualizarCicloDoJogo() {
         APeca pecaAtiva = tabuleiroModelo.getPecaAtiva();
+        if (pecaAtiva == null) return;
 
-        if (pecaAtiva.isEstadoAI()) {
-            pecaAtiva.descer();
-        } else {
+        if (!pecaAtiva.isEstadoAI()) {
             System.out.println("Peça fixada. Criando a próxima...");
             APeca novaPeca = APeca.criarPecaAleatoria();
-            tabuleiroModelo.setPecaAtiva(novaPeca);
-        }
 
-        outputController.exibirTabuleiro();
+            if (!novaPeca.definirCasas()) {
+                this.jogoAtivo = false;
+            } else {
+                tabuleiroModelo.setPecaAtiva(novaPeca);
+            }
+        }
     }
 
     /**
@@ -79,4 +101,8 @@ public final class PartidaModelo {
      */
     public TabuleiroModelo getTabuleiroModelo() {return tabuleiroModelo;}
     public List<JogadaModelo> getListaJogadas() {return listaJogadaModelos;}
+
+    public boolean isJogoAtivo() {        return this.jogoAtivo;
+
+    }
 }

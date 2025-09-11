@@ -28,6 +28,7 @@ public class TabuleiroModelo {
                 listaCasas.add(casaModelo);
         }
         pecaAtiva = APeca.criarPecaAleatoria();
+        pecaAtiva.definirCasas();
 
         OutputController outputController= new OutputController();
 

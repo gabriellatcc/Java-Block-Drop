@@ -10,7 +10,7 @@ import org.javablockdrop.model.PartidaModelo;
 public class InputController {
     private PartidaModelo partidaModelo;
 
-    public OutputController outputController= new OutputController();;
+    private OutputController outputController;
 
     public InputController(){
         partidaModelo=PartidaModelo.getInstancia();
@@ -26,11 +26,10 @@ public class InputController {
         switch (respostaLower){
             case "s":
                 partidaModelo.getTabuleiroModelo().criarTabuleiro();
-                outputController.instrucionarUsuario();
+                this.outputController.instrucionarUsuario();
                 return true;
             case"n":
-                outputController.despedirDoUsuario();
-                System.exit(0);
+                this.outputController.despedirDoUsuario();
                 return true;
             default:
                 System.out.println("Resposta invalida! ");
@@ -44,23 +43,26 @@ public class InputController {
      * Repassa para outra classe disparar os respectivos métodos para manipular o tabuleiro.
      * @param jogada é a informação da jogada/instrução do jogador.
      */
+
     public void obterJogada(String jogada) {
         if (jogada == null || jogada.isEmpty()) {
             System.out.println("Resposta inválida! Siga os comandos.");
+            this.outputController.repetir();
+            return;
         }
 
         String jogadaLower = jogada.toLowerCase();
 
         switch (jogadaLower) {
             case "p":
-                outputController.pausar();
+                this.outputController.pausar();
                 break;
             case "v":
-                outputController.exibirTabuleiro();
-                outputController.repetir();
+                this.outputController.exibirTabuleiro();
+                this.outputController.repetir();
                 break;
             case "s":
-                outputController.despedirDoUsuario();
+                this.outputController.despedirDoUsuario();
                 System.exit(0);
                 break;
             default:
@@ -69,22 +71,23 @@ public class InputController {
                         char letra = jogada.charAt(0);
                         int numero = Character.getNumericValue(jogada.charAt(1));
 
-                        partidaModelo.getListaJogadas().add(new JogadaModelo(letra, numero));
-                        for ( int i=0;i<partidaModelo.getListaJogadas().size();i++)
-                        {
-                            System.out.println(partidaModelo.getListaJogadas().get(i).getMovimento());
-                            System.out.println(partidaModelo.getListaJogadas().get(i).getQuantidade());
-                            partidaModelo.getListaJogadas().get(i).executar();
-                        }
-                        outputController.exibirTabuleiro();
-                        outputController.repetir();
+                        JogadaModelo jogadaAtual = new JogadaModelo(letra, numero);
+                        partidaModelo.processarTurno(jogadaAtual);
+                        this.outputController.exibirTabuleiro();
                     } catch (Exception e) {
                         System.out.println("Erro ao processar a jogada: " + e.getMessage());
                     }
-                } else {
-                    System.out.println("JogadaModelo inválida! Use o formato LetraNúmero (ex: A4).");
-                }
+
+                    if (partidaModelo.isJogoAtivo()) {
+                        this.outputController.repetir();
+                    } else {
+                        System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
+                    }
                 break;
-        }
+        }}
+    }
+
+    public void setOutputController(OutputController outputController) {
+        this.outputController = outputController;
     }
 }
