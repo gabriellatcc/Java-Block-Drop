@@ -1,13 +1,16 @@
 package org.javablockdrop.model.abstraction;
 
 /**
- * Subclasse abstrata para peças com 4 variações de posições no tabuleiro, que herda os métodos e atributos
- * das classes {@code APeca} e {@code APecaMultivariavel}
+ * Interface para peças com 4 variações de posições no tabuleiro.
  */
-public abstract class APecaMulti4Var extends APecaMultivariavel{
-    public APecaMulti4Var() {
-        quantidadeVariacoes = 4;
-    }
+public interface IPoliVariacao {
+    int quantidadeVariacoes = 4;
+
+    /**
+     * Método abstrato que será sobrescrito dependendo da classe de qual peça que terá
+     * as coordenadas analisadas nele, de maneira diferente.
+     */
+    public abstract void definirPosicao();
 
     /**
      * Método abstrato que será sobrescrito dependendo da qual peça que terá

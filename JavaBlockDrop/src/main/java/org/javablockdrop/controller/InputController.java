@@ -21,16 +21,21 @@ public class InputController {
      * @param resposta pode ser "s" para a partida começar e, caso seja "n", o jogo
      * é encerrado e exibe uma mensagem de despedida e agradecimento para o usuário
      */
-    public void obterResposta(String resposta){
+    public boolean obterResposta(String resposta){
         String respostaLower= resposta.toLowerCase();
         switch (respostaLower){
             case "s":
                 partidaModelo.getTabuleiroModelo().criarTabuleiro();
                 outputController.instrucionarUsuario();
-                break;
+                return true;
             case"n":
                 outputController.despedirDoUsuario();
-                break;
+                System.exit(0);
+                return true;
+            default:
+                System.out.println("Resposta invalida! ");
+                System.exit(0);
+                return false;
         }
     }
 
@@ -56,6 +61,7 @@ public class InputController {
                 break;
             case "s":
                 outputController.despedirDoUsuario();
+                System.exit(0);
                 break;
             default:
                 if (jogada.length() == 2 && Character.isLetter(jogada.charAt(0)) && Character.isDigit(jogada.charAt(1))) {

@@ -2,7 +2,6 @@ package org.javablockdrop.model;
 
 import org.javablockdrop.controller.OutputController;
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.implementation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,56 +27,11 @@ public class TabuleiroModelo {
                 casaModelo.setLinha(i);
                 listaCasas.add(casaModelo);
         }
-        pecaAtiva = gerarPeca();
-//        pecaAtiva.filtrar(pecaAtiva);
+        pecaAtiva = APeca.criarPecaAleatoria();
 
         OutputController outputController= new OutputController();
 
         outputController.exibirTabuleiro();
-    }
-
-    /**
-     * Gera a peça a ser manipulada por meio de um numero aleatorio que cria uma peça aleatória, podendo ser
-     * 0, I, L, J, T, S ou Z.
-     * @return a peça.
-     */
-    public APeca gerarPeca() {
-        int r = (int )(Math.random() * 6 + 0);
-
-        APeca pecaEmMovimento;
-        switch (r) {
-            case 0:
-                pecaEmMovimento =new PecaO();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 1:
-                pecaEmMovimento =new PecaMultiL();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 2:
-                pecaEmMovimento =new PecaMultiJ();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 3:
-                pecaEmMovimento =new PecaMultiT();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 4:
-                pecaEmMovimento =new PecaMultiZ();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 5:
-                pecaEmMovimento =new PecaMultiS();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            case 6:
-                pecaEmMovimento =new PecaMultiI();
-                pecaEmMovimento.criar();
-                return pecaEmMovimento;
-            default:
-                System.out.printf("Erro?");
-                return null;
-        }
     }
 
     public APeca getPecaAtiva() {return pecaAtiva;}

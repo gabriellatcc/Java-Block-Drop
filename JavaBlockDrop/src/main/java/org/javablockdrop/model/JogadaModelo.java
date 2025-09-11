@@ -1,8 +1,8 @@
 package org.javablockdrop.model;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.APecaMulti2Var;
-import org.javablockdrop.model.abstraction.APecaMulti4Var;
+import org.javablockdrop.model.abstraction.IDuplaVariacao;
+import org.javablockdrop.model.abstraction.IPoliVariacao;
 
 /**
  * Nesta classe as jogadas manipulam a peça ativa no tabuleiro, cada jogada é composta por
@@ -20,37 +20,40 @@ public class JogadaModelo {
     }
 
     /**
-     * Este método recebe a peça ativa do tabuleiro e dependendo da jogada ativa o método, verifica se a peça pertence
+     * Recebe a peça ativa do tabuleiro e dependendo da jogada ativa o método, verifica se a peça pertence
      * a uma instancia de classe multivalorada e utiliza a rotação especifica da peça.
      */
     public void executar(){
         APeca pecaAtiva = partidaModelo.getTabuleiroModelo().getPecaAtiva();
+        if (pecaAtiva == null || !pecaAtiva.isEstadoAI()) {
+            System.out.println("Não há peça ativa para mover.");
+            return;
+        }
 
-        if(movimento == 'd'){
-            pecaAtiva.movimentarD(quantidade);
-            pecaAtiva.descer();
-        } else if(movimento == 'e'){
-
-            pecaAtiva.movimentarE(quantidade);
-            pecaAtiva.descer();
-        } else if(movimento == 'a'){
-            if (pecaAtiva instanceof APecaMulti4Var) {
-                ((APecaMulti4Var) pecaAtiva).girarAntiHorario(quantidade);
-                pecaAtiva.descer();
-            } else if (pecaAtiva instanceof APecaMulti2Var) {
-                ((APecaMulti2Var) pecaAtiva).girar(quantidade);
-                pecaAtiva.descer();
-            }
-        } else if(movimento == 'h'){
-            if (pecaAtiva instanceof APecaMulti4Var) {
-                ((APecaMulti4Var) pecaAtiva).girarHorario(quantidade);
-                pecaAtiva.descer();
-            } else if (pecaAtiva instanceof APecaMulti2Var) {
-                ((APecaMulti2Var) pecaAtiva).girar(quantidade);
-                pecaAtiva.descer();
-            }
-        } else{
-            System.out.println("erro ao manipular a peca pela jogada");
+        switch (movimento) {
+            case 'd':
+                pecaAtiva.movimentarD(quantidade);
+                break;
+            case 'e':
+                pecaAtiva.movimentarE(quantidade);
+                break;
+            case 'a':
+                if (pecaAtiva instanceof IPoliVariacao) {
+                    ((IPoliVariacao) pecaAtiva).girarAntiHorario(quantidade);
+                } else if (pecaAtiva instanceof IDuplaVariacao) {
+                    ((IDuplaVariacao) pecaAtiva).girar(quantidade);
+                }
+                break;
+            case 'h':
+                if (pecaAtiva instanceof IPoliVariacao) {
+                    ((IPoliVariacao) pecaAtiva).girarHorario(quantidade);
+                } else if (pecaAtiva instanceof IDuplaVariacao) {
+                    ((IDuplaVariacao) pecaAtiva).girar(quantidade);
+                }
+                break;
+            default:
+                System.out.println("Erro: Movimento inválido.");
+                break;
         }
     }
 

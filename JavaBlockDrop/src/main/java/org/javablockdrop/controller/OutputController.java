@@ -140,4 +140,5 @@ public class OutputController {
                 "\n"+Cor.ROXO.getDescricao()+"\u001b[30m"+"@gabriellatcc - GITHUB       "+Cor.RESETADO.getDescricao()+
                 "\n"+Cor.AZUL.getDescricao()+"\u001b[30m"+"@gabriellatccorrea - LINKEDIN"+Cor.RESETADO.getDescricao());
     }
+
 }

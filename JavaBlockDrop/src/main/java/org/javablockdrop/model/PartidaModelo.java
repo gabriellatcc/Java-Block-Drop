@@ -1,5 +1,8 @@
 package org.javablockdrop.model;
 
+import org.javablockdrop.controller.OutputController;
+import org.javablockdrop.model.abstraction.APeca;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +12,13 @@ import java.util.List;
  */
 public final class PartidaModelo {
     private static PartidaModelo instancia;
+    private OutputController outputController;
 
     private TabuleiroModelo tabuleiroModelo= new TabuleiroModelo();
 
     private List<JogadaModelo> listaJogadaModelos = new ArrayList<>();
     private int pontos=0;
+    private boolean partidaIniciada = false;
 
     public PartidaModelo() {}
 
@@ -42,6 +47,31 @@ public final class PartidaModelo {
     public int somarPontos(int pontos){
         this.pontos+=pontos;
         return this.pontos;
+    }
+
+    /**
+     * Prepara o tabuleiro e a primeira peça para o início do jogo.
+     * Agora verifica se a partida já começou para não recriar o tabuleiro.
+     */
+    public void iniciarPartida() {
+        if (!partidaIniciada) {
+            tabuleiroModelo.criarTabuleiro();
+            partidaIniciada = true;
+        }
+    }
+
+    public void atualizarCicloDoJogo() {
+        APeca pecaAtiva = tabuleiroModelo.getPecaAtiva();
+
+        if (pecaAtiva.isEstadoAI()) {
+            pecaAtiva.descer();
+        } else {
+            System.out.println("Peça fixada. Criando a próxima...");
+            APeca novaPeca = APeca.criarPecaAleatoria();
+            tabuleiroModelo.setPecaAtiva(novaPeca);
+        }
+
+        outputController.exibirTabuleiro();
     }
 
     /**
