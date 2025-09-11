@@ -1,4 +1,4 @@
-# Java-Block-Drop
+# 🧱 Java-Block-Drop
 
 Um mini-game de turnos, baseado na lógica do jogo de blocos Tetris, que está sendo desenvolvido em linguagem Java para ser executado diretamente no terminal.
 O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio terminal, as regras de negócio pertencentes aos modelos (peça, tabuleiro, posições do tabuleiro, gerador de peças) e um controlador para interpretar as entradas do usuário.
@@ -16,7 +16,8 @@ Possui as seguintes finalidades:
 - Geração do tabuleiro no terminal.
 - Criação de peças aleatórias no topo do tabuleiro.
 - Menu inicial para o jogador decidir começar.
-  Pendências:
+
+Pendências:
 - Implementar a movimentação da peça para esquerda e direita.
 - Lógica de rotação da peça (sentido horário e anti-horário).
 - Detecção de colisão e empilhamento de peças.
