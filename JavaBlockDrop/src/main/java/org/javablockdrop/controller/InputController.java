@@ -43,7 +43,6 @@ public class InputController {
      * Repassa para outra classe disparar os respectivos métodos para manipular o tabuleiro.
      * @param jogada é a informação da jogada/instrução do jogador.
      */
-
     public void obterJogada(String jogada) {
         if (jogada == null || jogada.isEmpty()) {
             System.out.println("Resposta inválida! Siga os comandos.");
@@ -53,40 +52,58 @@ public class InputController {
 
         String jogadaLower = jogada.toLowerCase();
 
-        switch (jogadaLower) {
-            case "p":
-                this.outputController.pausar();
-                break;
-            case "v":
-                this.outputController.exibirTabuleiro();
-                this.outputController.repetir();
-                break;
-            case "s":
-                this.outputController.despedirDoUsuario();
-                System.exit(0);
-                break;
-            default:
-                if (jogada.length() == 2 && Character.isLetter(jogada.charAt(0)) && Character.isDigit(jogada.charAt(1))) {
-                    try {
-                        char letra = jogada.charAt(0);
-                        int numero = Character.getNumericValue(jogada.charAt(1));
+        if (jogadaLower.length() == 1) {
+            switch (jogadaLower) {
+                case "p":
+                    this.outputController.pausar();
+                    return;
+                    case "v":
+                    this.outputController.exibirTabuleiro();
+                    this.outputController.repetir();
+                    return;
+                case "s":
+                    this.outputController.despedirDoUsuario();
+                    System.exit(0);
+                    return;
+            }
+        }
 
-                        JogadaModelo jogadaAtual = new JogadaModelo(letra, numero);
-                        partidaModelo.processarTurno(jogadaAtual);
-                        this.outputController.exibirTabuleiro();
-                    } catch (Exception e) {
-                        System.out.println("Erro ao processar a jogada: " + e.getMessage());
-                    }
+        try {
+            for (int i = 0; i < jogadaLower.length(); i += 2) {
+                if (i + 1 >= jogadaLower.length()) {
+                    System.out.println("Jogada inválida: '" + jogadaLower.charAt(i) + "' está sem um número.");
+                    break;
+                }
 
-                    if (partidaModelo.isJogoAtivo()) {
-                        this.outputController.repetir();
-                    } else {
-                        System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
+                char letra = jogadaLower.charAt(i);
+                char digitoChar = jogadaLower.charAt(i + 1);
+
+                if (Character.isLetter(letra) && Character.isDigit(digitoChar)) {
+                    int numero = Character.getNumericValue(digitoChar);
+                    JogadaModelo jogadaAtual = new JogadaModelo(letra, numero);
+                    partidaModelo.processarTurno(jogadaAtual);
+
+                    if (!partidaModelo.isJogoAtivo()) {
+                        break;
                     }
-                break;
-        }}
+                } else {
+                    System.out.println("Comando inválido: '" + letra + digitoChar + "'. Use pares de letra e número.");
+                    break;
+                }
+            }
+
+            this.outputController.exibirTabuleiro();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao processar a sequência de jogadas: " + e.getMessage());
+        }
+
+        if (partidaModelo.isJogoAtivo()) {
+            this.outputController.repetir();
+        } else {
+            System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
+        }
     }
-
     public void setOutputController(OutputController outputController) {
         this.outputController = outputController;
     }

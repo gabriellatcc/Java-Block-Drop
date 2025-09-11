@@ -24,25 +24,40 @@ public class PecaI extends APeca implements IDuplaVariacao {
      */
     @Override
     public void girar(int qnt) {
-        qnt*=qnt;
-        if(qnt%2 == 1){//impar
-            c1+=7;
-            c2+=0;
-            c3-=7;
-            c4-=14;
-        } else{//par
-            c1-=7;
-            c2-=0;
-            c3+=7;
-            c4+=14;
+        limparCasas();
+        int posicaoAtual = definirPosicao();
+
+        if (qnt % 2 == 0) {
+            if (posicaoAtual != 1) {
+                c1 -= 7;
+                c3 += 7;
+                c4 += 14;
+            }
         }
+        else {
+            if (posicaoAtual != 2) {
+                c1 += 7;
+                c3 -= 7;
+                c4 -= 14;
+            }
+        }
+        definirCasas();
     }
 
     /**
      * Método que analisa as coordenadas e diz se a peça esta na posição 1 ou 2 para rotacionar posteiormente.
      */
     @Override
-    public void definirPosicao() {
-
+    public int definirPosicao() {
+        if(c1-c2 == -8 && c2-c3 == -8 && c3-c4 == -8 && c4-c1 == 24){
+            setPosicao(1);
+            return 1;
+        } else if (c1-c2 == -1 && c2-c3 == -1 && c3-c4 == -1 && c4-c1 == 3){
+            setPosicao(2);
+            return 2;
+        } else {
+            System.out.println("A peça não está e nenhuma posição conhecida!");
+            return 0;
+        }
     }
 }

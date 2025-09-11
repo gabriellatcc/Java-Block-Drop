@@ -20,22 +20,39 @@ public class PecaS extends APeca implements IDuplaVariacao {
 
     @Override
     public void girar(int qnt) {
-        qnt*=qnt;
-        if(qnt%2 == 1){//impar
-            c1+=0;
-            c2+=7;
-            c3+=2;
-            c4+=9;
-        } else{//par
-            c1-=0;
-            c2-=7;
-            c3-=2;
-            c4-=9;
+        limparCasas();
+        int posicaoAtual = definirPosicao();
+
+        if (qnt % 2 == 0) {
+            if (posicaoAtual != 1) {
+                c1-=0;
+                c2-=7;
+                c3-=2;
+                c4-=9;
+            }
         }
+        else {
+            if (posicaoAtual != 2) {
+                c1+=0;
+                c2+=7;
+                c3+=2;
+                c4+=9;
+            }
+        }
+        definirCasas();
     }
 
     @Override
-    public void definirPosicao() {
-
+    public int definirPosicao() {
+        if(c1-c2 == -1 && c2-c3 == -6 && c3-c4 == -1 && c4-c1 == 8){
+            setPosicao(1);
+            return 1;
+        } else if (c1-c2 == -8 && c2-c3 == -1 && c3-c4 == -8 && c4-c1 == 17){
+            setPosicao(2);
+            return 2;
+        } else {
+            System.out.println("A peça não está e nenhuma posição conhecida!");
+            return 0;
+        }
     }
 }

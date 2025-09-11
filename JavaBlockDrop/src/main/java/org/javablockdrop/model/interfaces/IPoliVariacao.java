@@ -10,7 +10,7 @@ public interface IPoliVariacao {
      * Método abstrato que será sobrescrito dependendo da classe de qual peça que terá
      * as coordenadas analisadas nele, de maneira diferente.
      */
-    public abstract void definirPosicao();
+    public abstract int definirPosicao();
 
     /**
      * Método abstrato que será sobrescrito dependendo da qual peça que terá

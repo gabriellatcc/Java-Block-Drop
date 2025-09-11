@@ -29,7 +29,21 @@ public class PecaT extends APeca implements IPoliVariacao {
     }
 
     @Override
-    public void definirPosicao() {
-
-    }
+    public int definirPosicao() {
+        if(c1-c2 == -1 && c2-c3 == -1 && c3-c4 == -7 && c4-c1 == 9){
+            setPosicao(1);
+            return 1;
+        } else if (c1-c2 == -7 && c2-c3 == -1 && c3-c4 == -8 && c4-c1 == 16){
+            setPosicao(2);
+            return 2;
+        } else if (c1-c2 == -7 && c2-c3 == -1 && c3-c4 == -1 && c4-c1 == 9) {
+            setPosicao(3);
+            return 3;
+        } else if (c1-c2 == -8 && c2-c3 == -1 && c3-c4 == -7 && c4-c1 == 16) {
+            setPosicao(4);
+            return 4;
+        } else {
+            System.out.println("A peça não está e nenhuma posição conhecida!");
+            return 0;
+        }       }
 }

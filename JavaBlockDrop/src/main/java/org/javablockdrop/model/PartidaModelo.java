@@ -1,6 +1,5 @@
 package org.javablockdrop.model;
 
-import org.javablockdrop.controller.OutputController;
 import org.javablockdrop.model.abstraction.APeca;
 
 import java.util.ArrayList;
