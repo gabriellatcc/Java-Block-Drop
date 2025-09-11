@@ -1,7 +1,7 @@
 package org.javablockdrop.model.implementation;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.IPoliVariacao;
+import org.javablockdrop.model.interfaces.IPoliVariacao;
 import org.javablockdrop.model.enumeration.Cor;
 
 /**
@@ -9,9 +9,9 @@ import org.javablockdrop.model.enumeration.Cor;
  * {@code IPoliVariacao}, que redefine os valores das coordenadas da peca e a cor que deve ser e, neste caso, azul.
  * Também herda os métodos de rotação que funcionam diferentemente de outras peças.
  */
-public class PecaMultiL extends APeca implements IPoliVariacao {
+public class PecaL extends APeca implements IPoliVariacao {
 
-    public PecaMultiL() {
+    public PecaL() {
         this.c1 = 3;
         this.c2 = 11;
         this.c3 = 19;

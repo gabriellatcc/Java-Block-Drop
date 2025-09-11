@@ -126,19 +126,19 @@ public abstract class APeca {
                 novaPeca = new PecaO();
                 break;
             case 1:
-                novaPeca = new PecaMultiL();
+                novaPeca = new PecaL();
                 break;
             case 2:
-                novaPeca = new PecaMultiJ();
+                novaPeca = new PecaJ();
                 break;
             case 3:
-                novaPeca = new PecaMultiT();
+                novaPeca = new PecaT();
                 break;
             case 4:
-                novaPeca = new PecaMultiZ();
+                novaPeca = new PecaZ();
                 break;
             case 5:
-                novaPeca = new PecaMultiS();
+                novaPeca = new PecaS();
                 break;
             case 6:
                 novaPeca = new PecaI();

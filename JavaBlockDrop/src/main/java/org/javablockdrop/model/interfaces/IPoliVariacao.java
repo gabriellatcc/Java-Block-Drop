@@ -1,4 +1,4 @@
-package org.javablockdrop.model.abstraction;
+package org.javablockdrop.model.interfaces;
 
 /**
  * Interface para peças com 4 variações de posições no tabuleiro.

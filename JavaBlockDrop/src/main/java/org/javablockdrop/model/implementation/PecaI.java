@@ -1,7 +1,7 @@
 package org.javablockdrop.model.implementation;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.IDuplaVariacao;
+import org.javablockdrop.model.interfaces.IDuplaVariacao;
 import org.javablockdrop.model.enumeration.Cor;
 
 /**

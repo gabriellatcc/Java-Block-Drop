@@ -1,8 +1,8 @@
 package org.javablockdrop.model;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.IDuplaVariacao;
-import org.javablockdrop.model.abstraction.IPoliVariacao;
+import org.javablockdrop.model.interfaces.IDuplaVariacao;
+import org.javablockdrop.model.interfaces.IPoliVariacao;
 
 /**
  * Nesta classe as jogadas manipulam a peça ativa no tabuleiro, cada jogada é composta por

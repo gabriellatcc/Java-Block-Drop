@@ -1,7 +1,7 @@
 package org.javablockdrop.model.implementation;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.IPoliVariacao;
+import org.javablockdrop.model.interfaces.IPoliVariacao;
 import org.javablockdrop.model.enumeration.Cor;
 
 /**
@@ -10,8 +10,8 @@ import org.javablockdrop.model.enumeration.Cor;
  * ou vermelho claro.
  * Também herda os métodos de rotação que funcionam diferentemente de outras peças.
  */
-public class PecaMultiJ extends APeca implements IPoliVariacao {
-    public PecaMultiJ() {
+public class PecaJ extends APeca implements IPoliVariacao {
+    public PecaJ() {
         this.c1 = 4;
         this.c2 = 12;
         this.c3 = 19;

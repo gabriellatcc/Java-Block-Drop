@@ -1,16 +1,16 @@
 package org.javablockdrop.model.implementation;
 
 import org.javablockdrop.model.abstraction.APeca;
-import org.javablockdrop.model.abstraction.IDuplaVariacao;
+import org.javablockdrop.model.interfaces.IDuplaVariacao;
 import org.javablockdrop.model.enumeration.Cor;
 
 /**
  * Subclasse que herda os métodos e atributos das classes {@code APeca}, {@code APecaMultivariavel} e
  * {@code IDuplaVariacao}, que redefine os valores das coordenadas da peca e a cor que deve ser e, neste caso, verde.
  */
-public class PecaMultiS extends APeca implements IDuplaVariacao {
+public class PecaS extends APeca implements IDuplaVariacao {
 
-    public PecaMultiS() {
+    public PecaS() {
         this.c1 = 3;
         this.c2 = 4;
         this.c3 = 10;
