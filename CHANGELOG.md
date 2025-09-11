@@ -4,7 +4,33 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
-## [0.3.2] - 2025-09-08
+## [0.5.0] - 2025-09-11
+
+### Added
+- Lógica para deslocamento automatico para baixo a cada turno
+- Lógica para movimentar para esquerda e direita as peças
+(funcionando a base de limpeza das casas em que a peça estava alocada e definição das novas casas se não ocupadas)
+![Demonstração](https://github.com/user-attachments/assets/59585fc0-476e-4bac-b4ba-469eefa9c7de)
+
+---
+
+## [0.4.11] - 2025-09-10
+
+### Changed
+- Correção do nome de subclasses para refletir suas identidades
+- Realocação das interfaces para uma pasta separada dos modelos
+
+---
+## [0.4.1] - 2025-09-10
+
+### Changed
+- Lógica de herança e interface para diferentes peças (isso se fez necessário porque todas as peças tem caracteristicas e metodos padrões, ao mesmo tempo que possuem capacidades diferentes)
+
+### Removed
+- Utilização da classe APecaMultivariavel que serviria como subclasse e seria um galho de acesso de metodos e atributos para demais peças
+
+---
+## [0.4.0] - 2025-09-08
 
 ### Added
 - Lógica de Heranca para criação de peças.
