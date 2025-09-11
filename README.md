@@ -23,7 +23,7 @@ Pendências:
 - Lógica de rotação da peça (sentido horário e anti-horário).
 - Limpeza de linhas completas e sistema de pontuação.
 
--> confira em: [CHANGELOG](https://github.com/gabriellatcc/Java-Block-Drop/blob/main/CHANGELOG.md)
+-> confira em: [Relatório de Alterações do Projeto (CHANGELOG)](https://github.com/gabriellatcc/Java-Block-Drop/blob/main/CHANGELOG.md)
 ## DESCOBERTAS:
 
 Fazendo teste de mesa percebi que há um cálculo para rotacionar mais complexo que o de mover peças e é nele em que pretendo trabalhar, além de revisar e remover anotações do código. :D
