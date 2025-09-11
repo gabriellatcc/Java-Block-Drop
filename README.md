@@ -5,7 +5,7 @@ O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio termina
 
 ## Tecnologias Utilizadas
 
-- **Linguagem**: Java
+- **Linguagem**: Java (com maven)
 - **Arquitetura**: MVC (Model-View-Controller)
 - **Ambiente**: Execução via linha de comando (CLI)
 
@@ -16,19 +16,20 @@ Possui as seguintes finalidades:
 - Geração do tabuleiro no terminal.
 - Criação de peças aleatórias no topo do tabuleiro.
 - Menu inicial para o jogador decidir começar.
+- Menu de instrução de comandos.
+- Mofimentação de peças para esquerda, direita e para baixo.
 
 Pendências:
-- Implementar a movimentação da peça para esquerda e direita.
 - Lógica de rotação da peça (sentido horário e anti-horário).
-- Detecção de colisão e empilhamento de peças.
 - Limpeza de linhas completas e sistema de pontuação.
 
+-> confira em: [CHANGELOG](https://github.com/gabriellatcc/Java-Block-Drop/blob/main/CHANGELOG.md)
 ## DESCOBERTAS:
 
 Fazendo teste de mesa percebi que há um cálculo para rotacionar mais complexo que o de mover peças e é nele em que pretendo trabalhar, além de revisar e remover anotações do código. :D
 
 ### MEU OBJETIVO!!
 
-Treinar programação lendo a documentação para entender a manipulação de dados desta linguagem, seja uma String, um objeto ou classe da biblioteca Java. Fugindo primordialmente do uso de IA e aderindo ler blogs de desenvolvedores que relatam e artigos que explicam a utlização de estruturas ou comandos específicos em seus projetos (como em: [Stack Overflow](https://stackoverflow.com/questions),
+A finalidade aqui é treinar programação lendo a documentação para entender a manipulação de dados desta linguagem, seja uma String, um objeto, classe ou pilar da linguagem Java. Fugindo primordialmente do uso de IA e aderindo ler blogs de desenvolvedores que relatam e artigos que explicam a utlização de estruturas ou comandos específicos em seus projetos (como em: [Stack Overflow](https://stackoverflow.com/questions),
 [W3Schools](https://www.w3schools.com/java/default.asp) ou
 [Baeldung](https://www.baeldung.com/java-generating-random-numbers-in-range)).
