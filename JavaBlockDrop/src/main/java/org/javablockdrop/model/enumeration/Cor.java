@@ -8,7 +8,7 @@ public enum Cor {
     //cores: unicode + color code
     RESETADO("\u001b[0m"),
     NEGRITO("\u001b[1m"),
-    PADRAO("\u001b[40m"),
+    PADRAO("\u001b[40m"),//47 branco para fundo preto
     PONTUADO("\u001b[107m"),
     VERMELHO("\u001b[41m"),
     LARANJA("\u001b[101m"),

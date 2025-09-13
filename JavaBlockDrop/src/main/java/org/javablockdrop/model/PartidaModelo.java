@@ -16,7 +16,8 @@ public final class PartidaModelo {
 
     private List<JogadaModelo> listaJogadaModelos = new ArrayList<>();
     private int pontos=0;
-    private boolean partidaIniciada = false;
+    private int linhasLimpas=0;
+    private int pecasColocadas=0;
     private boolean jogoAtivo = true;
 
     public PartidaModelo() {}
@@ -68,26 +69,23 @@ public final class PartidaModelo {
         return this.pontos;
     }
 
-    /**
-     * Prepara o tabuleiro e a primeira peça para o início do jogo.
-     * Agora verifica se a partida já começou para não recriar o tabuleiro.
-     */
-    public void iniciarPartida() {
-        if (!partidaIniciada) {
-            tabuleiroModelo.criarTabuleiro();
-            partidaIniciada = true;
-        }
-    }
-
     public void atualizarCicloDoJogo() {
         APeca pecaAtiva = tabuleiroModelo.getPecaAtiva();
         if (pecaAtiva == null) return;
+        int linhasLimpas = tabuleiroModelo.verificarEProcessarLinhasCompletas();
+
+        if (linhasLimpas > 0) {
+            int pontosGanhos = linhasLimpas * 100;
+            somarPontos(pontosGanhos);
+            System.out.println("\n** LINHA COMPLETA! +" + pontosGanhos + " PONTOS! **");
+            System.out.println("** PONTUAÇÃO TOTAL: " + this.pontos + " **\n");
+        }
 
         if (!pecaAtiva.isEstadoAI()) {
             System.out.println("Peça fixada. Criando a próxima...");
             APeca novaPeca = APeca.criarPecaAleatoria();
 
-            if (!novaPeca.definirCasas()) {
+            if (!novaPeca.definirCasasOcupadas()) {
                 this.jogoAtivo = false;
             } else {
                 tabuleiroModelo.setPecaAtiva(novaPeca);
@@ -101,7 +99,10 @@ public final class PartidaModelo {
     public TabuleiroModelo getTabuleiroModelo() {return tabuleiroModelo;}
     public List<JogadaModelo> getListaJogadas() {return listaJogadaModelos;}
 
-    public boolean isJogoAtivo() {        return this.jogoAtivo;
+    public int getPontos() {return pontos;}
 
-    }
+    public int getLinhasLimpas() {return linhasLimpas;}
+    public void setLinhasLimpas(int linhasLimpas) {this.linhasLimpas = linhasLimpas;}
+
+    public boolean isJogoAtivo() {return this.jogoAtivo;}
 }

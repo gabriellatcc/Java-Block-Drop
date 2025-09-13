@@ -67,6 +67,17 @@ public class InputController {
                     return;
             }
         }
+        if (jogadaLower.equals("ca")) {
+            JogadaModelo jogadaCair = new JogadaModelo('c', 0);
+            partidaModelo.processarTurno(jogadaCair);
+            this.outputController.exibirTabuleiro();
+            if (partidaModelo.isJogoAtivo()) {
+                this.outputController.repetir();
+            } else {
+                System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
+            }
+            return;
+        }
 
         try {
             for (int i = 0; i < jogadaLower.length(); i += 2) {

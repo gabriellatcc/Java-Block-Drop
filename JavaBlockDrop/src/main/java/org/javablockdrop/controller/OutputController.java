@@ -51,6 +51,7 @@ public class OutputController {
                 "A + N -> rodar a peça para o sentido anti-horário  x  N numero de vezes\n" +
                 "D + N -> deslizar a peça para direita  x  N numero de vezes\n" +
                 "E + N -> deslizar a peça para esquerda  x  N numero de vezes\n" +
+                "CA -> passar o turno e deixar a peça cair \n" +
                 "P -> pausar e despausar\n"+
                 "S -> sair e encerrar");
         String jogada = e.nextLine();
@@ -66,9 +67,13 @@ public class OutputController {
         for (int i = 0; i < partidaModelo.getTabuleiroModelo().getListaCasas().size(); i++) {
             System.out.print(partidaModelo.getTabuleiroModelo().getListaCasas().get(i).getComposicao() + " ");
             if ((i + 1) % 8 == 0) {
+                if (i == 7) {
+                    partidaModelo.getLinhasLimpas();
+                    System.out.print(Cor.RESETADO.getDescricao()+"    "+Cor.PADRAO.getDescricao()+" PONTUAÇÃO TOTAL: " + partidaModelo.getPontos()+" ");
+                }
                 System.out.println(Cor.RESETADO.getDescricao());
             }
-        }
+      }
     }
 
     /**

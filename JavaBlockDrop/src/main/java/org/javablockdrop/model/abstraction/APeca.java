@@ -20,52 +20,54 @@ public abstract class APeca {
     protected int c2=0;
     protected int c3=0;
     protected int c4=0;
+
     protected Cor cor;
+
     protected boolean estadoAI = true;
     protected int posicao;
 
     public APeca() {
-        this.casas= partidaModelo.getTabuleiroModelo().getListaCasas();
+        this.casas = partidaModelo.getTabuleiroModelo().getListaCasas();
     }
 
     /**
      * Cria a peça definindo a coordenada da casa do tabuleiro que a peça ocupa
      * como ocupada e estabelecendo a cor da peça.
      */
-    public boolean definirCasas(){
+    public boolean definirCasasOcupadas(){
         boolean colisao = Stream.of(c1, c2, c3, c4)
-                .anyMatch(index -> casas.get(index).isOcupado());
+                .anyMatch(index -> casas.get(index).isOcupada());
 
         if (colisao) {
             return false;
         }
 
-        casas.get(c1).setOcupado(true);
+        casas.get(c1).setOcupada(true);
         casas.get(c1).setCor(this.cor.getDescricao());
 
-        casas.get(c2).setOcupado(true);
+        casas.get(c2).setOcupada(true);
         casas.get(c2).setCor(this.cor.getDescricao());
 
-        casas.get(c3).setOcupado(true);
+        casas.get(c3).setOcupada(true);
         casas.get(c3).setCor(this.cor.getDescricao());
 
-        casas.get(c4).setOcupado(true);
+        casas.get(c4).setOcupada(true);
         casas.get(c4).setCor(this.cor.getDescricao());
 
         return true;
     }
 
-    public void limparCasas() {
-        casas.get(c1).setOcupado(false);
+    public void limparCasasOcupadas() {
+        casas.get(c1).setOcupada(false);
         casas.get(c1).setCor(null);
 
-        casas.get(c2).setOcupado(false);
+        casas.get(c2).setOcupada(false);
         casas.get(c2).setCor(null);
 
-        casas.get(c3).setOcupado(false);
+        casas.get(c3).setOcupada(false);
         casas.get(c3).setCor(null);
 
-        casas.get(c4).setOcupado(false);
+        casas.get(c4).setOcupada(false);
         casas.get(c4).setCor(null);
     }
 
@@ -79,11 +81,11 @@ public abstract class APeca {
         if (naBorda) {
             return;
         }
-        limparCasas();
+        limparCasasOcupadas();
 
         boolean nenhumaOcupada = Stream.of(c1 + qnt, c2 + qnt, c3 + qnt, c4 + qnt)
                 .map(index -> casas.get(index))
-                .noneMatch(CasaModelo::isOcupado);
+                .noneMatch(CasaModelo::isOcupada);
 
         if (nenhumaOcupada) {
             c1 += qnt;
@@ -91,7 +93,7 @@ public abstract class APeca {
             c3 += qnt;
             c4 += qnt;
         }
-        definirCasas();
+        definirCasasOcupadas();
 
     }
 
@@ -105,10 +107,10 @@ public abstract class APeca {
         if (naBorda) {
             return;
         }
-        limparCasas();
+        limparCasasOcupadas();
         boolean nenhumaOcupada = Stream.of(c1 - qnt, c2 - qnt, c3 - qnt, c4 - qnt)
                 .map(index -> casas.get(index))
-                .noneMatch(CasaModelo::isOcupado);
+                .noneMatch(CasaModelo::isOcupada);
 
         if (nenhumaOcupada) {
             c1 -= qnt;
@@ -116,7 +118,7 @@ public abstract class APeca {
             c3 -= qnt;
             c4 -= qnt;
         }
-        definirCasas();
+        definirCasasOcupadas();
 
     }
 
@@ -131,11 +133,11 @@ public abstract class APeca {
             this.estadoAI = false;
             return;
         }
-        limparCasas();
+        limparCasasOcupadas();
 
         boolean nenhumaOcupada = Stream.of(c1 + 8, c2 + 8, c3 + 8, c4 + 8)
                 .map(index -> casas.get(index))
-                .noneMatch(CasaModelo::isOcupado);
+                .noneMatch(CasaModelo::isOcupada);
 
         if (nenhumaOcupada) {
             c1 += 8;
@@ -146,7 +148,7 @@ public abstract class APeca {
             System.out.printf("Ops, deu erro! A peca não conseguiu descer\n");
             estadoAI = false;
         }
-        definirCasas();
+        definirCasasOcupadas();
 
     }
 
@@ -158,34 +160,15 @@ public abstract class APeca {
     public static APeca criarPecaAleatoria() {
         APeca novaPeca = null;
         int r = (int)(Math.random() * 7);
-        System.out.println("Número sorteado para peça: " + r);
 
         switch (r) {
-            case 0:
-                novaPeca = new PecaO();
-                break;
-            case 1:
-                novaPeca = new PecaL();
-                break;
-            case 2:
-                novaPeca = new PecaJ();
-                break;
-            case 3:
-                novaPeca = new PecaT();
-                break;
-            case 4:
-                novaPeca = new PecaZ();
-                break;
-            case 5:
-                novaPeca = new PecaS();
-                break;
-            case 6:
-                novaPeca = new PecaI();
-                break;
-            default:
-                System.out.println("Erro: número aleatório fora do esperado. Criando PeçaO padrão.");
-                novaPeca = new PecaO();
-                break;
+            case 0 -> novaPeca = new PecaO();
+            case 1 -> novaPeca = new PecaL();
+            case 2 -> novaPeca = new PecaJ();
+            case 3 -> novaPeca = new PecaT();
+            case 4 -> novaPeca = new PecaZ();
+            case 5 -> novaPeca = new PecaS();
+            case 6 -> novaPeca = new PecaI();
         }
         return novaPeca;
     }
@@ -195,16 +178,6 @@ public abstract class APeca {
      */
     public boolean isEstadoAI() {return estadoAI;}
     public void setEstadoAI(boolean estadoAI) {this.estadoAI = estadoAI;}
-
-    public int getC1() {return c1;}
-    public int getC2() {return c2;}
-    public int getC3() {return c3;}
-    public int getC4() {return c4;}
-
-    public void setC1(int c1) {this.c1 = c1;}
-    public void setC2(int c2) {this.c2 = c2;}
-    public void setC3(int c3) {this.c3 = c3;}
-    public void setC4(int c4) {this.c4 = c4;}
 
     public Cor getCor() {return cor;}
     public void setCor(Cor cor) {this.cor = cor;}

@@ -10,7 +10,7 @@ interface APecaTest {
     Cor cor = null;
     
     @Test
-    void definirCasas();
+    void definirCasasOcupadas();
 
     @Test
     void movimentarD();

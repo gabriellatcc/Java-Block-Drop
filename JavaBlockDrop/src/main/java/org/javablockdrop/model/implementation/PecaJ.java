@@ -30,7 +30,7 @@ public class PecaJ extends APeca implements IPoliVariacao {
     }
 
     @Override
-    public int definirPosicao() {
+    public int definirPosicaoAtual() {
         if(c1-c2 == -8 && c2-c3 == -7 && c3-c4 == -1 && c4-c1 == 16){
             setPosicao(1);
             return 1;

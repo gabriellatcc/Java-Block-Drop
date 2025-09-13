@@ -19,7 +19,7 @@ public class PecaZ extends APeca implements IDuplaVariacao {
 
     @Override
     public void girar(int qnt) {
-        limparCasas();
+        limparCasasOcupadas();
         int posicaoAtual = definirPosicao();
 
         if (qnt % 2 == 0) {
@@ -37,7 +37,7 @@ public class PecaZ extends APeca implements IDuplaVariacao {
                 c4+=7;
             }
         }
-        definirCasas();
+        definirCasasOcupadas();
     }
 
     @Override

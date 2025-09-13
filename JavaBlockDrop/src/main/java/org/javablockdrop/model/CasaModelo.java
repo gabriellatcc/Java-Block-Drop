@@ -8,7 +8,7 @@ import org.javablockdrop.model.enumeration.Cor;
  */
 public class CasaModelo {
     private String cor = Cor.PADRAO.getDescricao();
-    private boolean ocupado = false;
+    private boolean ocupada = false;
     private int linha;
 
     public CasaModelo() {}
@@ -24,8 +24,8 @@ public class CasaModelo {
         }
     }
 
-    public boolean isOcupado() {return ocupado;}
-    public void setOcupado(boolean ocupado) {this.ocupado = ocupado;}
+    public boolean isOcupada() {return ocupada;}
+    public void setOcupada(boolean ocupada) {this.ocupada = ocupada;}
     public String getCor() {return cor;}
     public void setCor(String cor) {this.cor = cor;}
     public void setLinha(int i) {this.linha = linha;}

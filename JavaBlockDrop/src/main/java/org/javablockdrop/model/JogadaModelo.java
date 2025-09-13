@@ -9,7 +9,7 @@ import org.javablockdrop.model.interfaces.IPoliVariacao;
  * um movimento e a quantidade de vezes em que acontece.
  */
 public class JogadaModelo {
-    private PartidaModelo partidaModelo=PartidaModelo.getInstancia();;
+    private PartidaModelo partidaModelo = PartidaModelo.getInstancia();
 
     private char movimento;
     private int quantidade;
@@ -29,7 +29,6 @@ public class JogadaModelo {
             System.out.println("Não há peça ativa para mover.");
             return;
         }
-
         switch (movimento) {
             case 'd':
                 pecaAtiva.movimentarD(quantidade);
@@ -50,6 +49,8 @@ public class JogadaModelo {
                 } else if (pecaAtiva instanceof IDuplaVariacao) {
                     ((IDuplaVariacao) pecaAtiva).girar(quantidade);
                 }
+                break;
+            case 'c':
                 break;
             default:
                 System.out.println("Erro: Movimento inválido.");
