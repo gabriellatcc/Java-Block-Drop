@@ -106,7 +106,7 @@ public class InputController {
             this.outputController.exibirTabuleiro();
 
         } catch (Exception e) {
-            System.out.println("Erro ao processar a sequência de jogadas: " + e.getMessage());
+            System.out.println("Erro: A peça não pode girar desta posição.");
         }
 
         if (partidaModelo.isJogoAtivo()) {

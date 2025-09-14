@@ -65,7 +65,6 @@ public class PecaL extends APeca implements IPoliVariacao {
                 System.out.println("Peça não girada.");
                 return;
         }
-
         definirCasasOcupadas();
     }
 
@@ -138,19 +137,5 @@ public class PecaL extends APeca implements IPoliVariacao {
                     c1+ " "+c2+ " "+c3+ " "+c4);
             return 0;
         }
-    }
-
-    /**
-     * Calcula e define a próxima posição da casa ocupada.
-     * @param cp1 valor a ser somado a casa 1
-     * @param cp2 valor a ser somado a casa 2
-     * @param cp3 valor a ser somado a casa 3
-     * @param cp4 valor a ser somado a casa 4
-     */
-    private void definirProximaPosicao(int cp1, int cp2, int cp3, int cp4) {
-        this.c1 += cp1;
-        this.c2 += cp2;
-        this.c3 += cp3;
-        this.c4 += cp4;
     }
 }

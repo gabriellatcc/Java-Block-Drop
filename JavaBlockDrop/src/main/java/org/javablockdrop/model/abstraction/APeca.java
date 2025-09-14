@@ -161,16 +161,22 @@ public abstract class APeca {
         APeca novaPeca = null;
         int r = (int)(Math.random() * 7);
 
-        switch (r) {
-            case 0 -> novaPeca = new PecaO();
-            case 1 -> novaPeca = new PecaL();
-            case 2 -> novaPeca = new PecaJ();
-            case 3 -> novaPeca = new PecaT();
-            case 4 -> novaPeca = new PecaZ();
-            case 5 -> novaPeca = new PecaS();
-            case 6 -> novaPeca = new PecaI();
-        }
+        novaPeca = new PecaL();
         return novaPeca;
+    }
+
+    /**
+     * Calcula e define a próxima posição da casa ocupada.
+     * @param cp1 valor a ser somado a casa 1
+     * @param cp2 valor a ser somado a casa 2
+     * @param cp3 valor a ser somado a casa 3
+     * @param cp4 valor a ser somado a casa 4
+     */
+    public void definirProximaPosicao(int cp1, int cp2, int cp3, int cp4) {
+        this.c1 += cp1;
+        this.c2 += cp2;
+        this.c3 += cp3;
+        this.c4 += cp4;
     }
 
     /**
