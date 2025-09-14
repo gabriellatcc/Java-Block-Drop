@@ -3,6 +3,15 @@
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.6.2] - 2025-09-14
+### Changed
+- Finalizada a implementação de rotação para as peças que utilizam a interface IPoliVariacao
+
+Demonstração com testes isolados para cada peça: <br>
+Sentido anti-horario T | Sentido horario peca T | Sentido anti-horário da peça J | Sentido horario peca J <br> 
+<img width="150" height="324" alt="image" src="https://github.com/user-attachments/assets/51054907-77a6-49e3-b251-fd7d65b80ec8" />  |   <img width="175" height="380" alt="image" src="https://github.com/user-attachments/assets/d5d5c4a0-3bc6-4dee-866b-78aca9507f5e" />  |   <img width="175" height="324" alt="image" src="https://github.com/user-attachments/assets/e40650e9-ff74-476d-b0f9-d6796dc9970f" />  |   <img width="150" height="324" alt="image" src="https://github.com/user-attachments/assets/6325ca14-245d-4fce-ab3b-082143807a97" />
+
+
 ---
 ## [0.6.1] - 2025-09-13
 
@@ -38,8 +47,10 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [0.4.11] - 2025-09-10
 
 ### Changed
-- Correção do nome de subclasses para refletir suas identidades
 - Realocação das interfaces para uma pasta separada dos modelos
+
+### Fixed
+- Correção do nome de subclasses para refletir suas identidades
 
 ---
 ## [0.4.1] - 2025-09-10
