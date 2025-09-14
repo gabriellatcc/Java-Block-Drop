@@ -161,7 +161,15 @@ public abstract class APeca {
         APeca novaPeca = null;
         int r = (int)(Math.random() * 7);
 
-        novaPeca = new PecaL();
+        switch (r) {
+            case 0 -> novaPeca = new PecaO();
+            case 1 -> novaPeca = new PecaL();
+            case 2 -> novaPeca = new PecaJ();
+            case 3 -> novaPeca = new PecaT();
+            case 4 -> novaPeca = new PecaZ();
+            case 5 -> novaPeca = new PecaS();
+            case 6 -> novaPeca = new PecaI();
+        }
         return novaPeca;
     }
 
