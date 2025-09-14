@@ -1,7 +1,28 @@
 # Relatório de Alterações do Projeto
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+---
+## [0.6.1] - 2025-09-13
+
+### Added
+- Lógica para rotação horária e anti-horaria da peça L.
+- Pré plementação de método estrutura rotação de peças que utilizam a interface IPoliVariacao.
+- Pré estrutura para marcação de pontos da partida cada vez que uma linha é eliminada.
+- A cada linha eliminada, as peças a cima dela se deslocam 1 para baixo ou até encostarem na base
+
+### Changed
+- Possibidade de passar o turno para que a peça não precise se movimentar e desloque para baixo.
+
+<img width="300" height="350" alt="image" src="https://github.com/user-attachments/assets/b392b1ca-d9fb-4ac6-89e9-9654d32ad9e9" />
+<img width="290" height="350" alt="image" src="https://github.com/user-attachments/assets/74d0919d-371f-4af8-9f17-14b95288e1f0" />
+
+---
+## [0.6.0] - 2025-09-11
+
+### Added
+- Lógica para rotação das peças que utilizam a interface IDuplaVariacao (peças S, Z, I)
 
 ---
 ## [0.5.0] - 2025-09-11
