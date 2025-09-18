@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public abstract class APeca {
     private PartidaModelo partidaModelo=PartidaModelo.getInstancia();
     private List<CasaModelo> casas;
-
+    private static int ultimoIndice = -1;
     protected int c1=0;
     protected int c2=0;
     protected int c3=0;
@@ -128,11 +128,18 @@ public abstract class APeca {
      * e outra peça deve ser gerada.
      */
     public void descer() {
-        boolean noChao = Stream.of(c1, c2, c3, c4).anyMatch(index -> index >= 56);
+        int tamanhoTotal = casas.size();
+        int largura = 8;
+        int indiceInicioUltimaLinha = tamanhoTotal - largura;
+
+        boolean noChao = Stream.of(c1, c2, c3, c4)
+                .anyMatch(index -> index >= indiceInicioUltimaLinha);
+
         if (noChao) {
             this.estadoAI = false;
             return;
         }
+
         limparCasasOcupadas();
 
         boolean nenhumaOcupada = Stream.of(c1 + 8, c2 + 8, c3 + 8, c4 + 8)
@@ -145,7 +152,6 @@ public abstract class APeca {
             c3 += 8;
             c4 += 8;
         } else{
-            System.out.printf("Ops, deu erro! A peca não conseguiu descer\n");
             estadoAI = false;
         }
         definirCasasOcupadas();
@@ -159,7 +165,13 @@ public abstract class APeca {
      */
     public static APeca criarPecaAleatoria() {
         APeca novaPeca = null;
-        int r = (int)(Math.random() * 7);
+        int r;
+
+        do {
+            r = (int)(Math.random() * 7);
+        } while (r == ultimoIndice);
+
+        ultimoIndice = r;
 
         switch (r) {
             case 0 -> novaPeca = new PecaO();

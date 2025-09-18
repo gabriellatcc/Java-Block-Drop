@@ -56,7 +56,6 @@ public class PecaI extends APeca implements IDuplaVariacao {
             setPosicao(2);
             return 2;
         } else {
-            System.out.println("A peça não está e nenhuma posição conhecida!");
             return 0;
         }
     }

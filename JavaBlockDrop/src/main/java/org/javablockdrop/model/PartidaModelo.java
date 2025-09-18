@@ -17,7 +17,6 @@ public final class PartidaModelo {
     private List<JogadaModelo> listaJogadaModelos = new ArrayList<>();
     private int pontos=0;
     private int linhasLimpas=0;
-    private int pecasColocadas=0;
     private boolean jogoAtivo = true;
 
     public PartidaModelo() {}
@@ -69,20 +68,25 @@ public final class PartidaModelo {
         return this.pontos;
     }
 
+    /**
+     * Valida as peças ativas para criar uma nova e aplicar mudanças no tabuleiro.
+     */
     public void atualizarCicloDoJogo() {
         APeca pecaAtiva = tabuleiroModelo.getPecaAtiva();
         if (pecaAtiva == null) return;
-        int linhasLimpas = tabuleiroModelo.verificarEProcessarLinhasCompletas();
-
-        if (linhasLimpas > 0) {
-            int pontosGanhos = linhasLimpas * 100;
-            somarPontos(pontosGanhos);
-            System.out.println("\n** LINHA COMPLETA! +" + pontosGanhos + " PONTOS! **");
-            System.out.println("** PONTUAÇÃO TOTAL: " + this.pontos + " **\n");
-        }
 
         if (!pecaAtiva.isEstadoAI()) {
-            System.out.println("Peça fixada. Criando a próxima...");
+            System.out.println("Peça fixada. Verificando linhas...");
+
+            int linhasLimpas = tabuleiroModelo.verificarEProcessarLinhasCompletas();
+
+            if (linhasLimpas > 0) {
+                int pontosGanhos = linhasLimpas * 100;
+                somarPontos(pontosGanhos);
+                System.out.println("\nLINHA COMPLETA! +" + pontosGanhos + " PONTOS!");
+            }
+
+            System.out.println("Criando a próxima peça...");
             APeca novaPeca = APeca.criarPecaAleatoria();
 
             if (!novaPeca.definirCasasOcupadas()) {

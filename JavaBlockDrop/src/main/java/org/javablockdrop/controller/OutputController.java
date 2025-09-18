@@ -121,18 +121,6 @@ public class OutputController {
     }
 
     /**
-     * Exibe uma pergunta referente a uma nova tentativa caso o jogador tenha perdido a partida e travado o tabuleiro.
-     */
-    public void oferecerTentar(){
-        Scanner e =  new Scanner(System.in);
-
-        System.out.println("Que pena! Quer tentar de novamente?");
-        String jogada = e.nextLine();
-
-        this.inputController.obterResposta(jogada);
-    }
-
-    /**
      * Informa uma mensagem de agradecimento ao usuário quando o jogo encerra.
      */
     public void despedirDoUsuario() {

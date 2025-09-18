@@ -16,7 +16,7 @@ public class TabuleiroModelo {
     private APeca pecaAtiva;
 
     public TabuleiroModelo(){
-        listaCasas = new ArrayList<>(64);
+        listaCasas = new ArrayList<>();
     }
 
     /**
@@ -24,7 +24,10 @@ public class TabuleiroModelo {
      */
     public void criarTabuleiro(){
         System.out.println("====== Tabuleiro ======");
-        for(int i=0;i<64;i++){
+        int tamanhoTotalDoTabuleiro = 64;
+        listaCasas.clear();
+        ((ArrayList<CasaModelo>) listaCasas).ensureCapacity(tamanhoTotalDoTabuleiro);
+        for(int i=0;i<tamanhoTotalDoTabuleiro;i++){
                 CasaModelo casaModelo=new CasaModelo();
                 casaModelo.setLinha(i);
                 listaCasas.add(casaModelo);
@@ -32,9 +35,7 @@ public class TabuleiroModelo {
         pecaAtiva = APeca.criarPecaAleatoria();
         pecaAtiva.definirCasasOcupadas();
 
-        OutputController outputController= new OutputController();
-
-        outputController.exibirTabuleiro();
+        new OutputController().exibirTabuleiro();
     }
 
     /**
@@ -42,11 +43,17 @@ public class TabuleiroModelo {
      * ele a limpa, anima e desce as linhas superiores.
      */
     public int verificarEProcessarLinhasCompletas() {
+        final int largura = 8;
+        if (listaCasas.isEmpty() || listaCasas.size() % largura != 0) {
+            return 0;
+        }
+        int altura = listaCasas.size() / largura;
+
         int linhasLimpas = 0;
-        for (int linha = 7; linha >= 0; linha--) {
+        for (int linha = altura - 1; linha >= 0; linha--) {
             boolean linhaCompleta = true;
-            for (int coluna = 0; coluna < 8; coluna++) {
-                int indice = (linha * 8) + coluna;
+            for (int coluna = 0; coluna < largura; coluna++) {
+                int indice = (linha * largura) + coluna;
                 if (!listaCasas.get(indice).isOcupada()) {
                     linhaCompleta = false;
                     break;
@@ -55,11 +62,8 @@ public class TabuleiroModelo {
 
             if (linhaCompleta) {
                 linhasLimpas++;
-
-                animarLinha(linha);
-
-                limparLinhaEDescer(linha);
-
+                animarLinha(linha, largura);
+                limparLinhaEDescer(linha, largura);
                 linha++;
             }
         }
@@ -70,9 +74,9 @@ public class TabuleiroModelo {
      * Pinta a linha completa com a cor PONTUADO e redesenha o tabuleiro.
      * @param linha o índice da linha a ser animada (0 a 7).
      */
-    private void animarLinha(int linha) {
-        for (int coluna = 0; coluna < 8; coluna++) {
-            int indice = (linha * 8) + coluna;
+    private void animarLinha(int linha, int largura) {
+        for (int coluna = 0; coluna < largura; coluna++) {
+            int indice = (linha * largura) + coluna;
             listaCasas.get(indice).setCor(Cor.PONTUADO.getDescricao());
         }
 
@@ -89,11 +93,11 @@ public class TabuleiroModelo {
      * para uma posição abaixo.
      * @param linhaApagada o índice da linha que foi completada.
      */
-    private void limparLinhaEDescer(int linhaApagada) {
+    private void limparLinhaEDescer(int linhaApagada, int largura) {
         for (int l = linhaApagada; l > 0; l--) {
-            for (int c = 0; c < 8; c++) {
-                int indiceAtual = (l * 8) + c;
-                int indiceDeCima = ((l - 1) * 8) + c;
+            for (int c = 0; c < largura; c++) {
+                int indiceAtual = (l * largura) + c;
+                int indiceDeCima = ((l - 1) * largura) + c;
 
                 CasaModelo casaAtual = listaCasas.get(indiceAtual);
                 CasaModelo casaDeCima = listaCasas.get(indiceDeCima);

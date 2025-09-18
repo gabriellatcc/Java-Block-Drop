@@ -32,33 +32,33 @@ public class PecaJ extends APeca implements IPoliVariacao {
         }
 
         int rotacoesEfetivas = quantidade % 4;
-        int posicaoFinal = posicaoAtual+rotacoesEfetivas;
+        int posicaoFinal = ((posicaoAtual - 1 + rotacoesEfetivas) % 4) + 1;
         switch (posicaoAtual){
             case 1: //posicao atual
                 switch (posicaoFinal){//proxima posicao
-                    case 2 -> definirProximaPosicao(-2,-2,-8,-8);
+                    case 2 -> definirProximaPosicao(-1,-1,-7,-7);
                     case 3 -> definirProximaPosicao(-1,-8,-8,-1);
                     case 4 -> definirProximaPosicao(-2,-9,-15,-8);
                 }
                 break;
             case 2:
                 switch (posicaoFinal){
-                    case 1 -> definirProximaPosicao(2,2,8,8);
-                    case 3 -> definirProximaPosicao(1,-6,0,7);
-                    case 4 -> definirProximaPosicao(0,-7,-7,0);
+                    case 3 -> definirProximaPosicao(0,-7,-1,6);
+                    case 4 -> definirProximaPosicao(-1,-8,-8,-1);
+                    case 1 -> definirProximaPosicao(1,1,7,7);
                 }
                 break;
             case 3:
                 switch (posicaoFinal){
-                    case 1 -> definirProximaPosicao(1,8,8,1);
-                    case 2 -> definirProximaPosicao(-1,6,0,-7);
                     case 4 -> definirProximaPosicao(-1,-1,-7,-7);
+                    case 1 -> definirProximaPosicao(1,8,8,1);
+                    case 2 -> definirProximaPosicao(0,7,1,-6);
                 }
                 break;
             case 4:
                 switch (posicaoFinal){
-                    case 5 -> definirProximaPosicao(2,9,15,8);
-                    case 2 -> definirProximaPosicao(0,7,7,0);
+                    case 1 -> definirProximaPosicao(2,9,15,8);
+                    case 2 -> definirProximaPosicao(1,8,8,1);
                     case 3 -> definirProximaPosicao(1,1,7,7);
                 }
                 break;
@@ -83,34 +83,34 @@ public class PecaJ extends APeca implements IPoliVariacao {
         }
 
         int rotacoesEfetivas = quantidade % 4;
-        int posicaoFinal = posicaoAtual+rotacoesEfetivas;
+        int posicaoFinal = ((posicaoAtual - 1 + rotacoesEfetivas) % 4) + 1;
         switch (posicaoAtual){
             case 1: //posicao atual
                 switch (posicaoFinal){//proxima posicao
-                    case 2 -> definirProximaPosicao(-2,-9,-15,-8);
+                    case 4 -> definirProximaPosicao(-2,-9,-15,-8);
                     case 3 -> definirProximaPosicao(-1,-8,-8,-1);
-                    case 4 -> definirProximaPosicao(-2,-2,-8,-8);
+                    case 2 -> definirProximaPosicao(-1,-1,-7,-7);
                 }
                 break;
             case 2:
                 switch (posicaoFinal){
-                    case 1 -> definirProximaPosicao(2,9,15,8);
-                    case 3 -> definirProximaPosicao(2,2,8,8);//estao trocados
-                    case 4 -> definirProximaPosicao(0,7,7,0);
+                    case 1 -> definirProximaPosicao(1,1,7,7);
+                    case 4 -> definirProximaPosicao(-1,-8,-8,-1);
+                    case 3 -> definirProximaPosicao(0,-7,-1,6);
                 }
                 break;
             case 3:
                 switch (posicaoFinal){
+                    case 2 -> definirProximaPosicao(0,7,1,-6);
                     case 1 -> definirProximaPosicao(1,8,8,1);
-                    case 2 -> definirProximaPosicao(-1,-1,-7,-7);
-                    case 4 -> definirProximaPosicao(-1,6,0,-7);
+                    case 4 -> definirProximaPosicao(-1,-1,-7,-7);
                 }
                 break;
             case 4:
                 switch (posicaoFinal){
-                    case 5 -> definirProximaPosicao(1,1,7,7);// estao trocados
-                    case 2 -> definirProximaPosicao(0,-7,-7,0);
-                    case 3 -> definirProximaPosicao(1,-6,0,7);
+                    case 3 -> definirProximaPosicao(1,1,7,7);
+                    case 2 -> definirProximaPosicao(1,8,8,1);
+                    case 1 -> definirProximaPosicao(2,9,15,8);
                 }
                 break;
             default:
@@ -137,7 +137,6 @@ public class PecaJ extends APeca implements IPoliVariacao {
             setPosicao(4);
             return 4;
         } else {
-            System.out.println("A peça não está e nenhuma posição conhecida!");
             return 0;
         }
     }

@@ -31,7 +31,7 @@ public class PecaT extends APeca implements IPoliVariacao {
         }
 
         int rotacoesEfetivas = quantidade % 4;
-        int posicaoFinal = posicaoAtual+rotacoesEfetivas;
+        int posicaoFinal = ((posicaoAtual - 1 + rotacoesEfetivas) % 4) + 1;
         switch (posicaoAtual){
             case 1: //posicao atual
                 switch (posicaoFinal){//proxima posicao
@@ -56,7 +56,7 @@ public class PecaT extends APeca implements IPoliVariacao {
                 break;
             case 4:
                 switch (posicaoFinal){
-                    case 5 -> definirProximaPosicao(-1,-8,-8,-8);
+                    case 1 -> definirProximaPosicao(-1,-8,-8,-8);
                     case 2 -> definirProximaPosicao(1,0,0,1);
                     case 3 -> definirProximaPosicao(0,-1,-1,-7);
                 }
@@ -82,7 +82,7 @@ public class PecaT extends APeca implements IPoliVariacao {
         }
 
         int rotacoesEfetivas = quantidade % 4;
-        int posicaoFinal = posicaoAtual+rotacoesEfetivas;
+        int posicaoFinal = ((posicaoAtual - 1 + rotacoesEfetivas) % 4) + 1;
         switch (posicaoAtual){
             case 1: //posicao atual
                 switch (posicaoFinal){//proxima posicao
@@ -107,9 +107,9 @@ public class PecaT extends APeca implements IPoliVariacao {
                 break;
             case 4:
                 switch (posicaoFinal){
-                    case 5 -> definirProximaPosicao(0,-1,-1,-7);//
-                    case 2 -> definirProximaPosicao(-1,0,0,-1);
-                    case 3 -> definirProximaPosicao(-1,-1,-1,-8);
+                    case 3 -> definirProximaPosicao(0,-1,-1,-7);//
+                    case 2 -> definirProximaPosicao(1,0,0,1);
+                    case 1 -> definirProximaPosicao(-1, -8, -8, -8);
                 }
                 break;
             default:
@@ -135,7 +135,6 @@ public class PecaT extends APeca implements IPoliVariacao {
             setPosicao(4);
             return 4;
         } else {
-            System.out.println("A peça não está e nenhuma posição conhecida!");
             return 0;
         }
     }
