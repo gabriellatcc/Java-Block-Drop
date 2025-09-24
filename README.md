@@ -11,11 +11,12 @@ O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio termina
 
 ## COMO DOCUMENTEI AS ALTERAÇÕES DO PROJETO?
 Confira em: [Relatório de Alterações do Projeto (CHANGELOG)](https://github.com/gabriellatcc/Java-Block-Drop/blob/main/CHANGELOG.md)
-## DESCOBERTAS:
-A documentação das relações de interação entre classes entidade, como agregação e composição foi essencial para construir uma abstração para o funcionamento do sistema.
-Em adição, a realização de cálculos em planlilha Excel de cada rotação e movimentação de cada peça não poderia deixar de ser mencionada, pois através delas pude perceber a lógica de translocação da peça.
 
-## OBJETIVO AlCANÇADO!!
+## DESCOBERTAS
+A documentação das relações de interação entre classes entidade, como agregação e composição foi essencial para construir uma abstração para o funcionamento do sistema.
+Em adição, a realização de cálculos matemáticos em planlilhas (Excel) de cada rotação e movimentação de cada peça não poderia deixar de ser mencionada, pois através delas pude perceber a lógica de translocação da peça.
+
+## OBJETIVO AlCANÇADO:
 Treino de lógica e abstração na programação criando documentação para entender a manipulação de dados desta linguagem, seja uma String, um objeto, classe ou pilar da linguagem Java.
 Fuga do uso de IA e leitura de blogs de desenvolvedores que relatam e artigos que explicam a utlização de estruturas ou comandos específicos em seus projetos (como em: [Stack Overflow](https://stackoverflow.com/questions),
 [W3Schools](https://www.w3schools.com/java/default.asp) ou
