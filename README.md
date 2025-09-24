@@ -9,20 +9,7 @@ O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio termina
 - **Arquitetura**: MVC (Model-View-Controller)
 - **Ambiente**: Execução via linha de comando (CLI)
 
-## COMO ESTÁ O PROJETO?
-
-Possui as seguintes finalidades:
-
-- Geração do tabuleiro no terminal.
-- Criação de peças aleatórias no topo do tabuleiro.
-- Menu inicial para o jogador decidir começar.
-- Menu de instrução de comandos.
-- Mofimentação de peças para esquerda, direita e para baixo.
-
-Pendências:
-- Lógica de rotação da peça (sentido horário e anti-horário).
-- Limpeza de linhas completas e sistema de pontuação.
-
+## COMO DOCUMENTEI AS ALTERAÇÕES DO PROJETO?
 -> confira em: [Relatório de Alterações do Projeto (CHANGELOG)](https://github.com/gabriellatcc/Java-Block-Drop/blob/main/CHANGELOG.md)
 ## DESCOBERTAS:
 A documentação das relações de interação entre classes entidade, como agregação e composição foi essencial para construir uma abstração para o funcionamento do sistema.
