@@ -14,8 +14,9 @@ O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio termina
 ## DESCOBERTAS:
 A documentação das relações de interação entre classes entidade, como agregação e composição foi essencial para construir uma abstração para o funcionamento do sistema.
 Em adição, a realização de cálculos em planlilha Excel de cada rotação e movimentação de cada peça não poderia deixar de ser mencionada, pois através delas pude perceber a lógica de translocação da peça.
-### MEU OBJETIVO!!
 
-A finalidade aqui é treinar programação lendo a documentação para entender a manipulação de dados desta linguagem, seja uma String, um objeto, classe ou pilar da linguagem Java. Fugindo primordialmente do uso de IA e aderindo ler blogs de desenvolvedores que relatam e artigos que explicam a utlização de estruturas ou comandos específicos em seus projetos (como em: [Stack Overflow](https://stackoverflow.com/questions),
+## OBJETIVO AKCANLADO!!
+Treino de lógica e abstração na programação criando documentação para entender a manipulação de dados desta linguagem, seja uma String, um objeto, classe ou pilar da linguagem Java.
+Fuga do uso de IA e leitura de blogs de desenvolvedores que relatam e artigos que explicam a utlização de estruturas ou comandos específicos em seus projetos (como em: [Stack Overflow](https://stackoverflow.com/questions),
 [W3Schools](https://www.w3schools.com/java/default.asp) ou
 [Baeldung](https://www.baeldung.com/java-generating-random-numbers-in-range)).
