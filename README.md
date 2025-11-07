@@ -1,5 +1,4 @@
-# 🧱 Java-Block-Drop
-
+# 🧱 Java Block Drop - Mini game de turnos com tetraminós <br> (via terminal)
 Um mini-game de turnos, baseado na lógica do jogo de blocos Tetris desenvolvido em linguagem Java para ser executado diretamente no terminal.
 O padrão de aarquitetura é o MVC, tendo como parte gráfica o próprio terminal, as regras de negócio pertencentes aos modelos (peça, tabuleiro, posições do tabuleiro, gerador de peças) e um controlador para interpretar as entradas do usuário.
 
