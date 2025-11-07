@@ -3,6 +3,7 @@ package org.javablockdrop.controller;
 import org.javablockdrop.model.PartidaModelo;
 import org.javablockdrop.model.enumeration.Cor;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -45,7 +46,9 @@ public class OutputController {
     public void instrucionarUsuario(){
         Scanner e =  new Scanner(System.in);
 
-        System.out.println(Cor.RESETADO.getDescricao()+ "Para cada tipo de jogada digite o comando correspondente. " +
+        System.out.println(Cor.RESETADO.getDescricao()+
+                "_______________________"+
+                "\nPara cada tipo de jogada digite o comando correspondente. " +
                 "\nVocê pode fazer combinações, como: H2D2, A4 ou A3E2. \n" +
                 "H + N -> rodar a peça para o sentido horario  x  N numero de vezes\n" +
                 "A + N -> rodar a peça para o sentido anti-horário  x  N numero de vezes\n" +
@@ -73,7 +76,7 @@ public class OutputController {
                 }
                 System.out.println(Cor.RESETADO.getDescricao());
             }
-      }
+        }
     }
 
     /**
@@ -81,6 +84,9 @@ public class OutputController {
      * da classe InputController.
      */
     public void repetir(){
+        limparTela();
+        exibirTabuleiro();
+        instrucionarUsuario();
         Scanner e =  new Scanner(System.in);
 
         System.out.println("Continue digitando jogadas e as peças se deslocam 1 para baixo.");
@@ -121,13 +127,35 @@ public class OutputController {
     }
 
     /**
+     * Limpa o console ou terminal onde o programa Java está sendo executado, em que tenta executar o comando
+     * nativo de limpeza de tela do Sistema Operacional,
+     * 1 -> verifica se o SO é Windows
+     * 2 -> usa o comando {@code "cls"}
+     * 3 -> caso contrário, tenta usar o comando {@code "clear"} (Linux)
+     * 4 -> em caso de falha, imprime 50 linhas vazias para sumir com o conteúdo antigo
+     */
+    public static void limparTela() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {// 1
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//2
+            } else {//3
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {//4
+                for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        }
+    }
+
+    /**
      * Informa uma mensagem de agradecimento ao usuário quando o jogo encerra.
      */
     public void despedirDoUsuario() {
         System.out.println(Cor.NEGRITO.getDescricao()+
                 "\nObrigada por visitar o jogo!" +
-                "\n"+Cor.ROXO.getDescricao()+"\u001b[30m"+"@gabriellatcc - GITHUB       "+Cor.RESETADO.getDescricao()+
-                "\n"+Cor.AZUL.getDescricao()+"\u001b[30m"+"@gabriellatccorrea - LINKEDIN"+Cor.RESETADO.getDescricao());
+                "\n"+Cor.ROXO.getDescricao()+"\u001b[97m"+"@gabriellatcc      -  GITHUB "+Cor.RESETADO.getDescricao()+
+                "\n"+Cor.AZUL.getDescricao()+"\u001b[97m"+"/gabriellatccorrea - LINKEDIN"+Cor.RESETADO.getDescricao());
     }
 
     public void setInputController(InputController inputController) {

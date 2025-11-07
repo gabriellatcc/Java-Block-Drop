@@ -25,6 +25,7 @@ public class InputController {
         String respostaLower= resposta.toLowerCase();
         switch (respostaLower){
             case "s":
+                this.outputController.limparTela();
                 partidaModelo.getTabuleiroModelo().criarTabuleiro();
                 this.outputController.instrucionarUsuario();
                 return true;
@@ -55,6 +56,7 @@ public class InputController {
         if (jogadaLower.length() == 1) {
             switch (jogadaLower) {
                 case "p":
+                    this.outputController.limparTela();
                     this.outputController.pausar();
                     return;
                     case "v":
@@ -70,7 +72,7 @@ public class InputController {
         if (jogadaLower.equals("ca")) {
             JogadaModelo jogadaCair = new JogadaModelo('c', 0);
             partidaModelo.processarTurno(jogadaCair);
-            this.outputController.exibirTabuleiro();
+
             if (partidaModelo.isJogoAtivo()) {
                 this.outputController.repetir();
             } else {
@@ -89,6 +91,8 @@ public class InputController {
                 char letra = jogadaLower.charAt(i);
                 char digitoChar = jogadaLower.charAt(i + 1);
 
+                this.outputController.limparTela();
+
                 if (Character.isLetter(letra) && Character.isDigit(digitoChar)) {
                     int numero = Character.getNumericValue(digitoChar);
                     JogadaModelo jogadaAtual = new JogadaModelo(letra, numero);
@@ -97,22 +101,23 @@ public class InputController {
                     if (!partidaModelo.isJogoAtivo()) {
                         break;
                     }
+
                 } else {
                     System.out.println("Comando inválido: '" + letra + digitoChar + "'. Use pares de letra e número.");
                     break;
                 }
             }
 
+            if (partidaModelo.isJogoAtivo()) {
+                this.outputController.exibirTabuleiro();
+                this.outputController.instrucionarUsuario();
+            } else {
+                System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
+            }
             this.outputController.exibirTabuleiro();
 
         } catch (Exception e) {
             System.out.println("Erro: A peça não pode girar desta posição.");
-        }
-
-        if (partidaModelo.isJogoAtivo()) {
-            this.outputController.repetir();
-        } else {
-            System.out.println("\nFIM DE JOGO! O tabuleiro está cheio.");
         }
     }
     public void setOutputController(OutputController outputController) {

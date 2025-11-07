@@ -3,6 +3,14 @@
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.7.0] - 2025-11-07
+
+### Added
+- Implementação do método `limparTela()` que executa comandos nativos
+(`cls` no Windows e `clear` no Linux) para limpar o console.
+- Incluisão de um mecanismo de fallback que imprime 50 linhas vazias se
+a execução do comando nativo falhar por problemas de permissão ou I/O.
+
 ## [0.6.2] - 2025-09-14
 ### Changed
 - Finalizada a implementação de rotação para as peças que utilizam a interface IPoliVariacao
