@@ -1,6 +1,6 @@
 # Relatório de Alterações do Projeto
 
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+Todas as mudanças notáveis neste projeto foram documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.7.0] - 2025-11-07
